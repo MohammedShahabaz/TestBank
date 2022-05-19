@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TestBank.Models.SavingAccountDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SavingAccType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IFSCcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Balance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrasferLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerAccount.AccountType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SavingAccType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IFSCcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Balance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrasferLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerAccount.AccountType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AccNum }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AccNum }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AccNum })
+        </td>
+    </tr>
+}
+
+</table>

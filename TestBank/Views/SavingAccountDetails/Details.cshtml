@@ -1,0 +1,66 @@
+﻿@model TestBank.Models.SavingAccountDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SavingAccountDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SavingAccType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SavingAccType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IFSCcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IFSCcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Balance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrasferLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrasferLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerAccount.AccountType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerAccount.AccountType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AccNum }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestBankDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="CityCode" />
+    </Key>
+    <Property Name="CityCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Statecode" Type="int" />
+  </EntityType>
+  <EntityType Name="Countries">
+    <Key>
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="CountryCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CustomerAccounts">
+    <Key>
+      <PropertyRef Name="AccNum" />
+    </Key>
+    <Property Name="CustID" Type="int" />
+    <Property Name="AccNum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountType" Type="nvarchar(max)" />
+    <Property Name="AccountSubType" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerDetails">
+    <Key>
+      <PropertyRef Name="CustID" />
+    </Key>
+    <Property Name="CustID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address1" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Address2" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mobile" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="DOB" Type="datetime" Nullable="false" />
+    <Property Name="MaritalStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ZIPCode" Type="int" />
+    <Property Name="City" Type="int" />
+    <Property Name="State" Type="int" />
+    <Property Name="Country" Type="int" />
+  </EntityType>
+  <EntityType Name="LoanAccountDetails">
+    <Key>
+      <PropertyRef Name="EMIID" />
+    </Key>
+    <Property Name="AccNum" Type="int" />
+    <Property Name="IFSCcode" Type="varchar" MaxLength="20" />
+    <Property Name="EMIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BalanceAmount" Type="int" Nullable="false" />
+    <Property Name="BranchCode" Type="int" />
+    <Property Name="RateOfInterest" Type="int" Nullable="false" />
+    <Property Name="LoanDuration" Type="date" Nullable="false" />
+    <Property Name="TotalLoanAmount" Type="int" Nullable="false" />
+    <Property Name="LoanAccountType" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="LoanEMIDetails">
+    <Key>
+      <PropertyRef Name="EMINum" />
+    </Key>
+    <Property Name="EMINum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMIID" Type="int" />
+    <Property Name="EMIDate" Type="date" Nullable="false" />
+    <Property Name="EMIAmount" Type="int" />
+    <Property Name="EMIStatus" Type="varchar" MaxLength="100" />
+    <Property Name="EMIRemainder" Type="varchar" MaxLength="100" />
+    <Property Name="RemainingBalance" Type="int" />
+  </EntityType>
+  <EntityType Name="PostalCodes">
+    <Key>
+      <PropertyRef Name="ZipCode" />
+    </Key>
+    <Property Name="ZipCode" Type="int" Nullable="false" />
+    <Property Name="Citycode" Type="int" />
+  </EntityType>
+  <EntityType Name="SavingAccountDetails">
+    <Key>
+      <PropertyRef Name="AccNum" />
+    </Key>
+    <Property Name="AccNum" Type="int" Nullable="false" />
+    <Property Name="SavingAccType" Type="varchar" MaxLength="20" />
+    <Property Name="IFSCcode" Type="varchar" MaxLength="20" />
+    <Property Name="Balance" Type="int" Nullable="false" />
+    <Property Name="TrasferLimit" Type="int" Nullable="false" />
+    <Property Name="BranchCode" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SavingAccountTxnHistory">
+    <Key>
+      <PropertyRef Name="TxnID" />
+    </Key>
+    <Property Name="TxnID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TxnDate" Type="date" />
+    <Property Name="AccNum" Type="int" />
+    <Property Name="TxnDetails" Type="varchar" MaxLength="100" />
+    <Property Name="WithdrawAmount" Type="int" />
+    <Property Name="DepositAmount" Type="int" />
+    <Property Name="Balance" Type="int" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="StateCode" />
+    </Key>
+    <Property Name="StateCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CountryCode" Type="int" />
+  </EntityType>
+  <Association Name="fk_1">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+    <End Role="States" Type="Self.States" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="CountryCode" />
+      </Principal>
+      <Dependent Role="States">
+        <PropertyRef Name="CountryCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_10">
+    <End Role="CustomerAccounts" Type="Self.CustomerAccounts" Multiplicity="1" />
+    <End Role="SavingAccountDetails" Type="Self.SavingAccountDetails" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerAccounts">
+        <PropertyRef Name="AccNum" />
+      </Principal>
+      <Dependent Role="SavingAccountDetails">
+        <PropertyRef Name="AccNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_12">
+    <End Role="SavingAccountDetails" Type="Self.SavingAccountDetails" Multiplicity="0..1" />
+    <End Role="SavingAccountTxnHistory" Type="Self.SavingAccountTxnHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SavingAccountDetails">
+        <PropertyRef Name="AccNum" />
+      </Principal>
+      <Dependent Role="SavingAccountTxnHistory">
+        <PropertyRef Name="AccNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_13">
+    <End Role="CustomerAccounts" Type="Self.CustomerAccounts" Multiplicity="0..1" />
+    <End Role="LoanAccountDetails" Type="Self.LoanAccountDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerAccounts">
+        <PropertyRef Name="AccNum" />
+      </Principal>
+      <Dependent Role="LoanAccountDetails">
+        <PropertyRef Name="AccNum" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_15">
+    <End Role="LoanAccountDetails" Type="Self.LoanAccountDetails" Multiplicity="0..1" />
+    <End Role="LoanEMIDetails" Type="Self.LoanEMIDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoanAccountDetails">
+        <PropertyRef Name="EMIID" />
+      </Principal>
+      <Dependent Role="LoanEMIDetails">
+        <PropertyRef Name="EMIID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_2">
+    <End Role="States" Type="Self.States" Multiplicity="0..1" />
+    <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateCode" />
+      </Principal>
+      <Dependent Role="Cities">
+        <PropertyRef Name="Statecode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_3">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+    <End Role="PostalCodes" Type="Self.PostalCodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="CityCode" />
+      </Principal>
+      <Dependent Role="PostalCodes">
+        <PropertyRef Name="Citycode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_4">
+    <End Role="PostalCodes" Type="Self.PostalCodes" Multiplicity="0..1" />
+    <End Role="CustomerDetails" Type="Self.CustomerDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PostalCodes">
+        <PropertyRef Name="ZipCode" />
+      </Principal>
+      <Dependent Role="CustomerDetails">
+        <PropertyRef Name="ZIPCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_5">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+    <End Role="CustomerDetails" Type="Self.CustomerDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="CityCode" />
+      </Principal>
+      <Dependent Role="CustomerDetails">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_6">
+    <End Role="States" Type="Self.States" Multiplicity="0..1" />
+    <End Role="CustomerDetails" Type="Self.CustomerDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateCode" />
+      </Principal>
+      <Dependent Role="CustomerDetails">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_7">
+    <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+    <End Role="CustomerDetails" Type="Self.CustomerDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Countries">
+        <PropertyRef Name="CountryCode" />
+      </Principal>
+      <Dependent Role="CustomerDetails">
+        <PropertyRef Name="Country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_8">
+    <End Role="CustomerDetails" Type="Self.CustomerDetails" Multiplicity="0..1" />
+    <End Role="CustomerAccounts" Type="Self.CustomerAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerDetails">
+        <PropertyRef Name="CustID" />
+      </Principal>
+      <Dependent Role="CustomerAccounts">
+        <PropertyRef Name="CustID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TestBankDBModelStoreContainer">
+    <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerAccounts" EntityType="Self.CustomerAccounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerDetails" EntityType="Self.CustomerDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoanAccountDetails" EntityType="Self.LoanAccountDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoanEMIDetails" EntityType="Self.LoanEMIDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostalCodes" EntityType="Self.PostalCodes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SavingAccountDetails" EntityType="Self.SavingAccountDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SavingAccountTxnHistory" EntityType="Self.SavingAccountTxnHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_1" Association="Self.fk_1">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="States" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="fk_10" Association="Self.fk_10">
+      <End Role="CustomerAccounts" EntitySet="CustomerAccounts" />
+      <End Role="SavingAccountDetails" EntitySet="SavingAccountDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_12" Association="Self.fk_12">
+      <End Role="SavingAccountDetails" EntitySet="SavingAccountDetails" />
+      <End Role="SavingAccountTxnHistory" EntitySet="SavingAccountTxnHistory" />
+    </AssociationSet>
+    <AssociationSet Name="fk_13" Association="Self.fk_13">
+      <End Role="CustomerAccounts" EntitySet="CustomerAccounts" />
+      <End Role="LoanAccountDetails" EntitySet="LoanAccountDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_15" Association="Self.fk_15">
+      <End Role="LoanAccountDetails" EntitySet="LoanAccountDetails" />
+      <End Role="LoanEMIDetails" EntitySet="LoanEMIDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_2" Association="Self.fk_2">
+      <End Role="States" EntitySet="States" />
+      <End Role="Cities" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="fk_3" Association="Self.fk_3">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="PostalCodes" EntitySet="PostalCodes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_4" Association="Self.fk_4">
+      <End Role="PostalCodes" EntitySet="PostalCodes" />
+      <End Role="CustomerDetails" EntitySet="CustomerDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_5" Association="Self.fk_5">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="CustomerDetails" EntitySet="CustomerDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_6" Association="Self.fk_6">
+      <End Role="States" EntitySet="States" />
+      <End Role="CustomerDetails" EntitySet="CustomerDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_7" Association="Self.fk_7">
+      <End Role="Countries" EntitySet="Countries" />
+      <End Role="CustomerDetails" EntitySet="CustomerDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_8" Association="Self.fk_8">
+      <End Role="CustomerDetails" EntitySet="CustomerDetails" />
+      <End Role="CustomerAccounts" EntitySet="CustomerAccounts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

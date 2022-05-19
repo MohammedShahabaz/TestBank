@@ -1,0 +1,99 @@
+﻿@model IEnumerable<TestBank.Models.CustomerDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City1.CityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country1.CountryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalCode.ZipCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State1.StateName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaritalStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City1.CityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country1.CountryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostalCode.ZipCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State1.StateName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CustID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CustID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CustID })
+        </td>
+    </tr>
+}
+
+</table>

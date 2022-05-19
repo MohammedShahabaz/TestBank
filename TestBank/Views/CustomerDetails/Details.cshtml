@@ -1,0 +1,114 @@
+﻿@model TestBank.Models.CustomerDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CustomerDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaritalStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaritalStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City1.CityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City1.CityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country1.CountryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country1.CountryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalCode.ZipCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostalCode.ZipCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State1.StateName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State1.StateName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

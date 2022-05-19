@@ -1,0 +1,82 @@
+﻿@model TestBank.Models.LoanAccountDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LoanAccountDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IFSCcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IFSCcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BalanceAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BalanceAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RateOfInterest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RateOfInterest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoanDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoanDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalLoanAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalLoanAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoanAccountType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoanAccountType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerAccount.AccountType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerAccount.AccountType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EMIID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

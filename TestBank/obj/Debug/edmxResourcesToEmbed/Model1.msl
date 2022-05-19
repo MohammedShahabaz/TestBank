@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestBankDBModelStoreContainer" CdmEntityContainer="TestBankDBEntities">
+    <EntitySetMapping Name="AccountTypes">
+      <EntityTypeMapping TypeName="TestBankDBModel.AccountType">
+        <MappingFragment StoreEntitySet="AccountType">
+          <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
+          <ScalarProperty Name="AccountType1" ColumnName="AccountType" />
+          <ScalarProperty Name="AccSubType" ColumnName="AccSubType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="TestBankDBModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="Statecode" ColumnName="Statecode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="TestBankDBModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerAccounts">
+      <EntityTypeMapping TypeName="TestBankDBModel.CustomerAccount">
+        <MappingFragment StoreEntitySet="CustomerAccounts">
+          <ScalarProperty Name="CustID" ColumnName="CustID" />
+          <ScalarProperty Name="AccNum" ColumnName="AccNum" />
+          <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerDetails">
+      <EntityTypeMapping TypeName="TestBankDBModel.CustomerDetail">
+        <MappingFragment StoreEntitySet="CustomerDetails">
+          <ScalarProperty Name="CustID" ColumnName="CustID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+          <ScalarProperty Name="ZIPCode" ColumnName="ZIPCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanAccountDetails">
+      <EntityTypeMapping TypeName="TestBankDBModel.LoanAccountDetail">
+        <MappingFragment StoreEntitySet="LoanAccountDetails">
+          <ScalarProperty Name="AccNum" ColumnName="AccNum" />
+          <ScalarProperty Name="IFSCcode" ColumnName="IFSCcode" />
+          <ScalarProperty Name="EMIID" ColumnName="EMIID" />
+          <ScalarProperty Name="BalanceAmount" ColumnName="BalanceAmount" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+          <ScalarProperty Name="RateOfInterest" ColumnName="RateOfInterest" />
+          <ScalarProperty Name="LoanDuration" ColumnName="LoanDuration" />
+          <ScalarProperty Name="TotalLoanAmount" ColumnName="TotalLoanAmount" />
+          <ScalarProperty Name="LoanAccountTypeId" ColumnName="LoanAccountTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanEMIDetails">
+      <EntityTypeMapping TypeName="TestBankDBModel.LoanEMIDetail">
+        <MappingFragment StoreEntitySet="LoanEMIDetails">
+          <ScalarProperty Name="EMINum" ColumnName="EMINum" />
+          <ScalarProperty Name="EMIID" ColumnName="EMIID" />
+          <ScalarProperty Name="EMIDate" ColumnName="EMIDate" />
+          <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
+          <ScalarProperty Name="EMIStatus" ColumnName="EMIStatus" />
+          <ScalarProperty Name="EMIRemainder" ColumnName="EMIRemainder" />
+          <ScalarProperty Name="RemainingBalance" ColumnName="RemainingBalance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostalCodes">
+      <EntityTypeMapping TypeName="TestBankDBModel.PostalCode">
+        <MappingFragment StoreEntitySet="PostalCode">
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Citycode" ColumnName="Citycode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavingAccountDetails">
+      <EntityTypeMapping TypeName="TestBankDBModel.SavingAccountDetail">
+        <MappingFragment StoreEntitySet="SavingAccountDetails">
+          <ScalarProperty Name="AccNum" ColumnName="AccNum" />
+          <ScalarProperty Name="SavingAccTypeID" ColumnName="SavingAccTypeID" />
+          <ScalarProperty Name="IFSCcode" ColumnName="IFSCcode" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="TrasferLimit" ColumnName="TrasferLimit" />
+          <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavingAccountTxnHistories">
+      <EntityTypeMapping TypeName="TestBankDBModel.SavingAccountTxnHistory">
+        <MappingFragment StoreEntitySet="SavingAccountTxnHistory">
+          <ScalarProperty Name="TxnID" ColumnName="TxnID" />
+          <ScalarProperty Name="TxnDate" ColumnName="TxnDate" />
+          <ScalarProperty Name="AccNum" ColumnName="AccNum" />
+          <ScalarProperty Name="TxnDetails" ColumnName="TxnDetails" />
+          <ScalarProperty Name="WithdrawAmount" ColumnName="WithdrawAmount" />
+          <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="TestBankDBModel.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

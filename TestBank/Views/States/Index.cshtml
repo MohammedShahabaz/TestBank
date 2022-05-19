@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TestBank.Models.State>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country.CountryName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StateName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country.CountryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StateCode }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StateCode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StateCode })
+        </td>
+    </tr>
+}
+
+</table>
