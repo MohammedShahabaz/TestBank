@@ -42,8 +42,8 @@
     <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Mobile" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mobile" Type="Int64" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
     <Property Name="MaritalStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ZIPCode" Type="Int32" />
     <Property Name="City" Type="Int32" />

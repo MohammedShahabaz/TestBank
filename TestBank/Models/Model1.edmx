@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TestBankDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TestBankDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cities">
           <Key>
             <PropertyRef Name="CityCode" />
@@ -39,13 +39,13 @@
           <Property Name="Address1" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Address2" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Mobile" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="DOB" Type="datetime" Nullable="false" />
           <Property Name="MaritalStatus" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ZIPCode" Type="int" />
           <Property Name="City" Type="int" />
           <Property Name="State" Type="int" />
           <Property Name="Country" Type="int" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Mobile" Type="numeric" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="LoanAccountDetails">
           <Key>
@@ -315,8 +315,7 @@
             <End Role="CustomerAccounts" EntitySet="CustomerAccounts" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TestBankDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -362,8 +361,8 @@
           <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Mobile" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Mobile" Type="Int64" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
           <Property Name="MaritalStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ZIPCode" Type="Int32" />
           <Property Name="City" Type="Int32" />

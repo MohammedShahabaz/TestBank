@@ -26,8 +26,8 @@ namespace TestBank.Models
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string EmailId { get; set; }
-        public decimal Mobile { get; set; }
-        public System.DateTime DOB { get; set; }
+        public Nullable<long> Mobile { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
         public string MaritalStatus { get; set; }
         public Nullable<int> ZIPCode { get; set; }
         public Nullable<int> City { get; set; }

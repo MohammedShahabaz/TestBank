@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using TestBank.Models;
 
+
 namespace TestBank.Controllers
 {
     public class CustomerDetailsController : Controller
@@ -17,8 +18,8 @@ namespace TestBank.Controllers
 
         // GET: CustomerDetails
         public ActionResult Index()
-        {
-            var customerDetails = db.CustomerDetails.Include(c => c.City1).Include(c => c.Country1).Include(c => c.PostalCode).Include(c => c.State1);
+        { 
+        var customerDetails = db.CustomerDetails.Include(c => c.City1).Include(c => c.Country1).Include(c => c.PostalCode).Include(c => c.State1);
             return View(customerDetails.ToList());
         }
 
@@ -33,6 +34,13 @@ namespace TestBank.Controllers
             ViewBag.Slist = new SelectList(selectList, "StateCode", "StateName");
             return PartialView("DisplayStates");
         }
+        
+            public ActionResult Grid(int? id)
+        {
+            var customerAccounts = db.CustomerAccounts.Where(x => x.CustID == id).ToList();
+            //var customerAccounts = db.CustomerAccounts.Include(c => c.SavingAccountDetail).Include(c => c.CustomerDetail);
+            return PartialView(customerAccounts);
+        }
         public ActionResult Search()
         {
          
@@ -40,6 +48,7 @@ namespace TestBank.Controllers
             ViewBag.CountryList = new SelectList(db.Countries, "CountryCode", "CountryName");
             ViewBag.ZIPCode = new SelectList(db.PostalCodes, "ZipCode", "ZipCode");
             ViewBag.State = new SelectList(db.States, "StateCode", "StateName");
+            ViewBag.accounts = new SelectList(db.CustomerAccounts);
             return View();
         }
         [HttpPost]
