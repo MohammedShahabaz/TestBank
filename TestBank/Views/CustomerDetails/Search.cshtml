@@ -2,21 +2,28 @@
 @{
     ViewBag.Title = "Search";
 }
+<h4 style="padding:0%  30%">CUSTOMER INFORMATION</h4>
+<hr />
 @using (Html.BeginForm("Search", "CustomerDetails", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <h4 style="padding:0%  30%">CUSTOMER INFORMATION</h4>
-    <hr />
     <form asp-action="Search">
-        <div class="form-horizontal">
-            <div class="form-group ">
-                <label for="id" class="control-label col-md-2">Customer ID</label>
-                <div class="col-md-2">
+        <div class="form-horizontal ">
+            <div class="form-group  ">
+                <label for="id" class="control-label col-md-2 ">Customer ID</label>
+                <div class="col-md-2 ">
                     <input name="id" class="form-control" />
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <input type="submit" value="Search" class="btn btn-default" />
                 </div>
+                <div class="col-md-2 ">
+                    <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Create", "CustomerAccounts", new { id = ViewBag.id })'">Advance Search</button>
+                </div>
+                <div class="col-md-2 ">
+                    <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Create", "CustomerAccounts", new { id = ViewBag.id })'">Add Account</button>
+                </div>
+                
             </div>
         </div>
     </form>
@@ -32,7 +39,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.CustID)
 
-        <div class="row">
+        <div class="row ">
             <div class="col-xs-3 col-xs-offset-0">
                 <div class="form-group">
                     @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -62,7 +69,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-3 ">
-                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; |   <button type="button" style="padding:2% 11% 2% 5%" class="btn btn-default" onclick="location.href = '@Url.Action("Create", "CustomerDetails")'">ADD</button> |
+                    &emsp;&emsp;&emsp;  <button type="button" style="padding:2% 11% 2% 5%" class="btn btn-default " onclick="location.href = '@Url.Action("Create", "CustomerDetails")'"> ADD</button> 
                 </div>
             </div>
         </div>
@@ -97,7 +104,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-3 ">
-                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; |  <button type="button" class="btn btn-default " onclick=" location.href = '@Url.Action("Edit", "CustomerDetails", new { id = ViewBag.id })' ">UPDATE</button> |
+                    &emsp;&emsp;&emsp;  <button type="button" class="btn btn-default " onclick=" location.href = '@Url.Action("Edit", "CustomerDetails", new { id = ViewBag.id })' ">UPDATE</button> 
                 </div>
             </div>
 
@@ -135,7 +142,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-3 ">
-                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; |  <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Delete", "CustomerDetails", new { id = ViewBag.id })'">DELETE</button>   |
+                    &emsp;&emsp;&emsp; <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Delete", "CustomerDetails", new { id = ViewBag.id })'">DELETE</button>   
                 </div>
             </div>
         </div>
@@ -172,57 +179,58 @@
         </div>
     </div>
 }
+
 <h4 style="padding: 0% 30%">ACCOUNT INFORMATION</h4>
-<hr />
+<br />
 <div class="form-horizontal">
     <div class="row">
         <div class="col-xs-9 col-xs-offset-0">
             @{Html.RenderAction("Grid");}
         </div>
-        <div class="col-xs-3 ">
-            <div class="form-horizontal">
-                 <div class="row">
-                     <div class="col-xs-3 col-xs-offset-3">
-                         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <button type="button" style="padding-right:60%" class="btn btn-default" onclick="location.href = '@Url.Action("Create", "CustomerAccounts", new { id = ViewBag.id })'">Add Account</button>
-                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-3 col-xs-offset-3">
-                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Create", "CustomerAccounts", new { id = ViewBag.id })'">Update Account</button>
+        @*<div class="col-xs-3 ">
+                <div class="form-horizontal">
+                     <div class="row">
+                         <div class="col-xs-3 col-xs-offset-3">
+                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <button type="button"  class="btn btn-default" onclick="location.href = '@Url.Action("Create", "CustomerAccounts", new { id = ViewBag.id })'">Add Account</button>
+                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 col-xs-offset-3">
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Create", "CustomerAccounts", new { id = ViewBag.id })'">Update Account</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 col-xs-offset-3">
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Create", "CustomerAccounts", new { id = ViewBag.id })'">Delete  Account</button>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-3 col-xs-offset-3">
-                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Create", "CustomerAccounts", new { id = ViewBag.id })'">Delete  Account</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </div>*@
     </div>
 </div>
 
 
 
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#CountryCode").change(function () {
-                var countryid = $(this).val();
-                debugger
-                $.ajax({
-                    type: "post",
-                    url: "/CustomerDetails/GetStateList?CountryCode=" + countryid,
-                    contentType: "html",
-                    success: function (response) {
-                        debugger
-                        $("#StateCode").empty();
-                        $("#StateCode").append(response);
-                    }
-                })
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#CountryCode").change(function () {
+            var countryid = $(this).val();
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/CustomerDetails/GetStateList?CountryCode=" + countryid,
+                contentType: "html",
+                success: function (response) {
+                    debugger
+                    $("#StateCode").empty();
+                    $("#StateCode").append(response);
+                }
             })
         })
-    </script>
+    })
+</script>

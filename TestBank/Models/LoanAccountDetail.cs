@@ -20,15 +20,18 @@ namespace TestBank.Models
             this.LoanEMIDetails = new HashSet<LoanEMIDetail>();
         }
     
-        public Nullable<int> AccNum { get; set; }
+        public int AccNum { get; set; }
         public string IFSCcode { get; set; }
-        public int EMIID { get; set; }
-        public int BalanceAmount { get; set; }
+        public Nullable<decimal> BalanceAmount { get; set; }
         public Nullable<int> BranchCode { get; set; }
-        public int RateOfInterest { get; set; }
-        public System.DateTime LoanDuration { get; set; }
-        public int TotalLoanAmount { get; set; }
+        public decimal Principle { get; set; }
+        public decimal RateOfInterest { get; set; }
+        public int LoanDuration { get; set; }
+        public decimal TotalLoanAmount { get; set; }
+        public decimal MonthlyPayment { get; set; }
         public string LoanAccountType { get; set; }
+        public Nullable<System.DateTime> LoanIssuedDate { get; set; }
+        public Nullable<System.DateTime> LoanPayDate { get; set; }
     
         public virtual CustomerAccount CustomerAccount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

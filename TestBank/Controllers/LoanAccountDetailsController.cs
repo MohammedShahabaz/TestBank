@@ -12,7 +12,7 @@ namespace TestBank.Controllers
 {
     public class LoanAccountDetailsController : Controller
     {
-        private TestBankDBEntities1 db = new TestBankDBEntities1();
+        private TestBankDBEntities2 db = new TestBankDBEntities2();
 
         // GET: LoanAccountDetails
         public ActionResult Index()
@@ -35,14 +35,19 @@ namespace TestBank.Controllers
             }
             return View(loanAccountDetail);
         }
-
+        public ActionResult Calculate(LoanAccountDetail obj)
+        {
+            return View(obj);
+        }
         // GET: LoanAccountDetails/Create
         public ActionResult Create(int? id)
         {
-            CustomerAccount c = db.CustomerAccounts.Find(id);
-            ViewBag.c = c;
+            CustomerAccount ac = db.CustomerAccounts.Find(id);
+            LoanAccountDetail la = new LoanAccountDetail();
+            la.AccNum = ac.AccNum;
+            la.LoanAccountType = ac.AccountSubType;
             ViewBag.AccNum = new SelectList(db.CustomerAccounts, "AccNum", "AccountType");
-            return View();
+            return View(la);
         }
 
         // POST: LoanAccountDetails/Create
@@ -50,13 +55,20 @@ namespace TestBank.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccNum,IFSCcode,EMIID,BalanceAmount,BranchCode,RateOfInterest,LoanDuration,TotalLoanAmount,LoanAccountType")] LoanAccountDetail loanAccountDetail)
+        public ActionResult Create([Bind(Include = "AccNum,IFSCcode,BalanceAmount,BranchCode,Principle,RateOfInterest,LoanDuration,TotalLoanAmount,MonthlyPayment,LoanAccountType,LoanIssuedDate,LoanPayDate")] LoanAccountDetail loanAccountDetail)
         {
             if (ModelState.IsValid)
             {
-                db.LoanAccountDetails.Add(loanAccountDetail);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (loanAccountDetail.TotalLoanAmount == 0)
+                {
+                    return RedirectToAction("Calculate", loanAccountDetail);
+                }
+                else
+                {
+                    db.LoanAccountDetails.Add(loanAccountDetail);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.AccNum = new SelectList(db.CustomerAccounts, "AccNum", "AccountType", loanAccountDetail.AccNum);
@@ -84,7 +96,7 @@ namespace TestBank.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccNum,IFSCcode,EMIID,BalanceAmount,BranchCode,RateOfInterest,LoanDuration,TotalLoanAmount,LoanAccountType")] LoanAccountDetail loanAccountDetail)
+        public ActionResult Edit([Bind(Include = "AccNum,IFSCcode,BalanceAmount,BranchCode,Principle,RateOfInterest,LoanDuration,TotalLoanAmount,MonthlyPayment,LoanAccountType,LoanIssuedDate,LoanPayDate")] LoanAccountDetail loanAccountDetail)
         {
             if (ModelState.IsValid)
             {

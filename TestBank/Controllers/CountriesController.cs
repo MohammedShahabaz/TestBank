@@ -12,7 +12,7 @@ namespace TestBank.Controllers
 {
     public class CountriesController : Controller
     {
-        private TestBankDBEntities1 db = new TestBankDBEntities1();
+        private TestBankDBEntities2 db = new TestBankDBEntities2();
 
         // GET: Countries
         public ActionResult Index()

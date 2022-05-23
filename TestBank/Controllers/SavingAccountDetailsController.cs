@@ -12,7 +12,7 @@ namespace TestBank.Controllers
 {
     public class SavingAccountDetailsController : Controller
     {
-        private TestBankDBEntities1 db = new TestBankDBEntities1();
+        private TestBankDBEntities2 db = new TestBankDBEntities2();
 
         // GET: SavingAccountDetails
         public ActionResult Index()
@@ -33,6 +33,7 @@ namespace TestBank.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.acno = id;
             return View(savingAccountDetail);
         }
 
@@ -57,7 +58,7 @@ namespace TestBank.Controllers
             {
                 db.SavingAccountDetails.Add(savingAccountDetail);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details",new { id = savingAccountDetail.AccNum });
             }
 
             ViewBag.AccNum = new SelectList(db.CustomerAccounts, "AccNum", "AccountType", savingAccountDetail.AccNum);
@@ -76,6 +77,7 @@ namespace TestBank.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SavingAccType = new SelectList(new List<object> { "Regular", "Salary" });
             ViewBag.AccNum = new SelectList(db.CustomerAccounts, "AccNum", "AccountType", savingAccountDetail.AccNum);
             return View(savingAccountDetail);
         }
@@ -91,7 +93,7 @@ namespace TestBank.Controllers
             {
                 db.Entry(savingAccountDetail).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Search","CustomerDetails");
             }
             ViewBag.AccNum = new SelectList(db.CustomerAccounts, "AccNum", "AccountType", savingAccountDetail.AccNum);
             return View(savingAccountDetail);

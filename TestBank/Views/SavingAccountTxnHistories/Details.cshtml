@@ -1,0 +1,66 @@
+﻿@model TestBank.Models.SavingAccountTxnHistory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2  style="padding:0% 10%">Transaction Successful</h2>
+<h4 style="padding:0% 10%"> check Details</h4>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TxnDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TxnDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Balance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SavingAccountDetail.SavingAccType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SavingAccountDetail.SavingAccType)
+        </dd>
+
+    </dl>
+</div>
+<br />
+<div class="col-md-3 col-md-offset-1">
+    &emsp;&emsp;&emsp; <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Details", "SavingAccountDetails", new { id = ViewBag.AccNum })'">Back</button>
+</div>

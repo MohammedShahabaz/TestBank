@@ -11,16 +11,19 @@ namespace TestBank.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SavingAccountTxnHistory
     {
         public int TxnID { get; set; }
-        public Nullable<System.DateTime> TxnDate { get; set; }
         public Nullable<int> AccNum { get; set; }
-        public string TxnDetails { get; set; }
-        public Nullable<int> WithdrawAmount { get; set; }
-        public Nullable<int> DepositAmount { get; set; }
-        public Nullable<int> Balance { get; set; }
+        public string SourceType { get; set; }
+        public string TransType { get; set; }
+        [DataType(DataType.Currency)]
+        [Range(0.9,999999999,ErrorMessage ="Amount must be greater than 0")]
+        public decimal Amount { get; set; }
+        public Nullable<decimal> Balance { get; set; }
+        public Nullable<System.DateTime> TxnDate { get; set; }
     
         public virtual SavingAccountDetail SavingAccountDetail { get; set; }
     }

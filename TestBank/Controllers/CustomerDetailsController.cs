@@ -14,7 +14,7 @@ namespace TestBank.Controllers
 {
     public class CustomerDetailsController : Controller
     {
-        private TestBankDBEntities1 db = new TestBankDBEntities1();
+        private TestBankDBEntities2 db = new TestBankDBEntities2();
 
         // GET: CustomerDetails
         public ActionResult Index()
@@ -57,14 +57,17 @@ namespace TestBank.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ModelState.AddModelError("id", "Enter Customer ID ");
             }
             CustomerDetail customerDetail = db.CustomerDetails.Find(id);
             if (customerDetail == null)
             {
-                return HttpNotFound();
+                ModelState.AddModelError("id", "Customer ID not found");
             }
-            ViewBag.id = customerDetail.CustID;
+            else
+            {
+                ViewBag.id = customerDetail.CustID;
+            }
             return View(customerDetail);
 
 

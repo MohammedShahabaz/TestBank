@@ -14,8 +14,8 @@ namespace TestBank.Models
     
     public partial class LoanEMIDetail
     {
-        public int EMINum { get; set; }
-        public Nullable<int> EMIID { get; set; }
+        public int EMIID { get; set; }
+        public Nullable<int> AccNum { get; set; }
         public System.DateTime EMIDate { get; set; }
         public Nullable<int> EMIAmount { get; set; }
         public string EMIStatus { get; set; }

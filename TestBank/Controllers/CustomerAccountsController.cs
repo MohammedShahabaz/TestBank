@@ -12,7 +12,7 @@ namespace TestBank.Controllers
 {
     public class CustomerAccountsController : Controller
     {
-        private TestBankDBEntities1 db = new TestBankDBEntities1();
+        private TestBankDBEntities2 db = new TestBankDBEntities2();
 
         // GET: CustomerAccounts
         public ActionResult Index()
@@ -40,12 +40,14 @@ namespace TestBank.Controllers
         public ActionResult Create(int? id)
         {
             CustomerDetail customerdetail = db.CustomerDetails.Find(id);
-            ViewBag.customer = customerdetail;
+             ViewBag.customer = customerdetail;
+            CustomerAccount c = new CustomerAccount();
+            c.CustID = customerdetail.CustID;
             ViewBag.AccNum = new SelectList(db.SavingAccountDetails, "AccNum", "SavingAccType");
             ViewBag.CustID = new SelectList(db.CustomerDetails, "CustID", "FirstName");
             ViewBag.Acctypes = new SelectList(new List<object> { "Savings", "Loan" });
             ViewBag.Accsubtypes = new SelectList(new List<object> { "Regular", "Salary" });
-            return View();
+            return View(c);
         }
 
         // POST: CustomerAccounts/Create
@@ -58,7 +60,7 @@ namespace TestBank.Controllers
             if (ModelState.IsValid)
             {
                 db.CustomerAccounts.Add(customerAccount);
-                db.SaveChanges();
+                 db.SaveChanges();
                 if (customerAccount.AccountType == "Savings")
                 {
                     return RedirectToAction("Create", "SavingAccountDetails",new { id = customerAccount.AccNum });
@@ -132,7 +134,7 @@ namespace TestBank.Controllers
             CustomerAccount customerAccount = db.CustomerAccounts.Find(id);
             db.CustomerAccounts.Remove(customerAccount);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Search","CustomerDetails");
         }
 
         protected override void Dispose(bool disposing)

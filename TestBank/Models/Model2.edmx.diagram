@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9521ede8bebe4dec9476bab3c55a5936" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="TestBankDBModel1.City" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBankDBModel1.Country" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBankDBModel1.CustomerAccount" Width="1.5" PointX="12" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBankDBModel1.CustomerDetail" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBankDBModel1.LoanAccountDetail" Width="1.5" PointX="14.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBankDBModel1.LoanEMIDetail" Width="1.5" PointX="16.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBankDBModel1.PostalCode" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBankDBModel1.SavingAccountDetail" Width="1.5" PointX="14.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBankDBModel1.SavingAccountTxnHistory" Width="1.5" PointX="16.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBankDBModel1.State" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="TestBankDBModel1.fk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBankDBModel1.fk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBankDBModel1.fk_5" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBankDBModel1.fk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBankDBModel1.fk_7" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBankDBModel1.fk_10" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBankDBModel1.fk_13" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBankDBModel1.fk_8" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBankDBModel1.fk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBankDBModel1.fk_6" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBankDBModel1.fk_14" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBankDBModel1.fk_12" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

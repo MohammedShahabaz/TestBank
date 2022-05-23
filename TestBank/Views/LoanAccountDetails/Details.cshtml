@@ -35,6 +35,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Principle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Principle)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.RateOfInterest)
         </dt>
 
@@ -59,11 +67,35 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.MonthlyPayment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonthlyPayment)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.LoanAccountType)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.LoanAccountType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoanIssuedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoanIssuedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoanPayDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoanPayDate)
         </dd>
 
         <dt>
@@ -77,6 +109,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.EMIID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AccNum }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
