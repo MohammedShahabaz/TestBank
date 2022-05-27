@@ -11,16 +11,13 @@ namespace TestBank.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class SavingAccountTxnHistory
     {
         public int TxnID { get; set; }
         public Nullable<int> AccNum { get; set; }
         public string SourceType { get; set; }
         public string TransType { get; set; }
-        [DataType(DataType.Currency)]
-        
         public decimal Amount { get; set; }
         public Nullable<decimal> Balance { get; set; }
         public Nullable<System.DateTime> TxnDate { get; set; }

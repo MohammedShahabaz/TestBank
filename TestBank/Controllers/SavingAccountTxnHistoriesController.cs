@@ -86,6 +86,7 @@ namespace TestBank.Controllers
                 {
                     s.Balance = s.Balance - savingAccountTxnHistory.Amount;
                     savingAccountTxnHistory.Balance = s.Balance;
+                    savingAccountTxnHistory.TransType = "Withdraw";
                     db.SaveChanges();
                 }
             }

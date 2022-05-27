@@ -11,8 +11,7 @@ namespace TestBank.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class CustomerDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +21,7 @@ namespace TestBank.Models
         }
     
         public int CustID { get; set; }
-        [Required(ErrorMessage ="Please Enter Name")]
-        [RegularExpression(@"^[a-zA-Z ]+$",ErrorMessage ="Special character not allowed ")]
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address1 { get; set; }
