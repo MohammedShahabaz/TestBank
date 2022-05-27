@@ -11,8 +11,7 @@ namespace TestBank.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class SavingAccountDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,7 +25,6 @@ namespace TestBank.Models
         public string IFSCcode { get; set; }
         public int TrasferLimit { get; set; }
         public int BranchCode { get; set; }
-        [DataType(DataType.Currency)]
         public Nullable<decimal> Balance { get; set; }
     
         public virtual CustomerAccount CustomerAccount { get; set; }

@@ -22,6 +22,23 @@ namespace TestBank.Controllers
         }
 
         // GET: LoanAccountDetails/Details/5
+
+        public ActionResult ViewAccount(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LoanAccountDetail loanAccountDetail = db.LoanAccountDetails.Find(id);
+            if (loanAccountDetail == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.AccNum = loanAccountDetail.AccNum;
+            return View(loanAccountDetail);
+        }
+
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,42 +50,41 @@ namespace TestBank.Controllers
             {
                 return HttpNotFound();
             }
+           
             return View(loanAccountDetail);
         }
-        public ActionResult Calculate(LoanAccountDetail obj)
+
+        public ActionResult Grid(int? id)
         {
-            return View(obj);
+            var loanEMIDetails = db.LoanEMIDetails.Where(x => x.AccNum == id).ToList();
+            return PartialView(loanEMIDetails);
         }
+      
+     
+      
+
         // GET: LoanAccountDetails/Create
         public ActionResult Create(int? id)
         {
-            CustomerAccount ac = db.CustomerAccounts.Find(id);
+            CustomerAccount obj = db.CustomerAccounts.Find(id);
             LoanAccountDetail la = new LoanAccountDetail();
-            la.AccNum = ac.AccNum;
-            la.LoanAccountType = ac.AccountSubType;
-            ViewBag.AccNum = new SelectList(db.CustomerAccounts, "AccNum", "AccountType");
+            la.AccNum = obj.AccNum;
+            la.LoanAccountType = obj.AccountSubType;
+            ViewBag.AccNum = la.AccNum;
+           
             return View(la);
         }
-
-        // POST: LoanAccountDetails/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AccNum,IFSCcode,BalanceAmount,BranchCode,Principle,RateOfInterest,LoanDuration,TotalLoanAmount,MonthlyPayment,LoanAccountType,LoanIssuedDate,LoanPayDate")] LoanAccountDetail loanAccountDetail)
         {
             if (ModelState.IsValid)
             {
-                if (loanAccountDetail.TotalLoanAmount == 0)
-                {
-                    return RedirectToAction("Calculate", loanAccountDetail);
-                }
-                else
-                {
+                
                     db.LoanAccountDetails.Add(loanAccountDetail);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                    return RedirectToAction("Details",new { id = loanAccountDetail.AccNum });
+              
             }
 
             ViewBag.AccNum = new SelectList(db.CustomerAccounts, "AccNum", "AccountType", loanAccountDetail.AccNum);

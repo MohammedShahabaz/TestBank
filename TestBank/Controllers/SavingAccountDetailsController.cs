@@ -33,9 +33,18 @@ namespace TestBank.Controllers
             {
                 return HttpNotFound();
             }
+            CustomerAccount c = db.CustomerAccounts.Find(savingAccountDetail.AccNum);
             ViewBag.acno = id;
+            ViewBag.CustID = c.CustID;
             return View(savingAccountDetail);
         }
+        public ActionResult Grid(int? id)
+        {
+            var transactionhistory = db.SavingAccountTxnHistories.Where(x => x.AccNum == id).ToList();
+            return PartialView(transactionhistory);
+        }
+
+
 
         // GET: SavingAccountDetails/Create
         public ActionResult Create(int? id)

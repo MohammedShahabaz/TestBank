@@ -1,0 +1,61 @@
+﻿@model IEnumerable< TestBank.Models.LoanEMIDetail >
+@{
+    ViewBag.Title = "Grid";
+}
+
+
+<div style="height:220px; overflow:auto; width:1045px" class="container ">
+
+    <table style="width:100%" class="col-md-8 table-bordered table-striped table-condensed table-fixed">
+        <thead>
+            <tr>
+                <th class="col" style="position:-webkit-sticky; position:sticky ;top:0;background-color:white">
+                    @Html.DisplayNameFor(model => model.AccNum)
+                </th>
+                <th class="col" style="position: -webkit-sticky; position: sticky; top: 0; background-color: white">
+                    @Html.DisplayNameFor(model => model.EMIDate)
+                </th>
+                <th class="col" style="position: -webkit-sticky; position: sticky; top: 0; background-color: white">
+                    @Html.DisplayNameFor(model => model.EMIAmount)
+                </th>
+                <th class="col" style="position: -webkit-sticky; position: sticky; top: 0; background-color: white">
+                    @Html.DisplayNameFor(model => model.EMIStatus)
+                </th>
+                <th class="col" style="position: -webkit-sticky; position: sticky; top: 0; background-color: white">
+                    @Html.DisplayNameFor(model => model.RemainingBalance)
+                </th>
+                <th class="col" style="position: -webkit-sticky; position: sticky; top: 0; background-color: white">
+                    @Html.DisplayNameFor(model => model.EMIReminder)
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.AccNum)
+                    </td>
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.EMIDate)
+                    </td>
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.EMIAmount)
+                    </td>
+
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.EMIStatus)
+                    </td>
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.RemainingBalance)
+                    </td>
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.EMIReminder)
+                    </td>
+
+                </tr>
+            </tbody>
+        }
+
+    </table>
+</div>

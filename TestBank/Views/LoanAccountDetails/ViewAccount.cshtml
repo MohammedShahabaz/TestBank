@@ -1,9 +1,8 @@
 ﻿@model TestBank.Models.LoanAccountDetail
-
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "ViewAccount";
 }
-<h3 style="padding:1%  30%">LOAN ACCOUNT DETAIL</h3>
+<h4 style="padding:1%  35%">LOAN ACCOUNT DETAIL</h4>
 <hr />
 
 @using (Html.BeginForm())
@@ -35,7 +34,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.IFSCcode, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-8 col-xs-offset-2">
-                        @Html.EditorFor(model => model.IFSCcode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.IFSCcode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.IFSCcode, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -59,7 +58,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.LoanPayDate, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-6 col-xs-offset-2">
-                        @Html.EditorFor(model => model.LoanPayDate, new { htmlAttributes = new { @id = "DateP", @class = "form-control", @readonly = "readonly" } })
+                        @Html.EditorFor(model => model.LoanPayDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.LoanPayDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -68,7 +67,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.BranchCode, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-8 col-xs-offset-2">
-                        @Html.EditorFor(model => model.BranchCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.BranchCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.BranchCode, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -81,7 +80,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Principle, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-6 col-xs-offset-3">
-                        @Html.EditorFor(model => model.Principle, new { htmlAttributes = new { @id = "Principle", @class = "form-control" } })
+                        @Html.EditorFor(model => model.Principle, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.Principle, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -90,7 +89,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.LoanDuration, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-6 col-xs-offset-2">
-                        @Html.EditorFor(model => model.LoanDuration, new { htmlAttributes = new { @id = "Time", @class = "form-control" } })
+                        @Html.EditorFor(model => model.LoanDuration, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.LoanDuration, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -99,7 +98,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.RateOfInterest, "Interest", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-8 col-xs-offset-2">
-                        @Html.EditorFor(model => model.RateOfInterest, new { htmlAttributes = new { @id = "Interest", @class = "form-control" } })
+                        @Html.EditorFor(model => model.RateOfInterest, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.RateOfInterest, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -117,7 +116,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.MonthlyPayment, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-6 col-xs-offset-3">
-                        @Html.EditorFor(model => model.MonthlyPayment, new { htmlAttributes = new { @id = "EmiAmt", @class = "form-control", @readonly = "readonly" } })
+                        @Html.EditorFor(model => model.MonthlyPayment, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.MonthlyPayment, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -126,7 +125,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.TotalLoanAmount, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-6 col-xs-offset-2">
-                        @Html.EditorFor(model => model.TotalLoanAmount, new { htmlAttributes = new { @id = "Total", @class = "form-control", @readonly = "readonly" } })
+                        @Html.EditorFor(model => model.TotalLoanAmount, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.TotalLoanAmount, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -135,64 +134,42 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.BalanceAmount, "Balance", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-8 col-xs-offset-2">
-                        @Html.EditorFor(model => model.BalanceAmount, new { htmlAttributes = new { @id = "Balance", @class = "form-control", @readonly = "readonly" } })
+                        @Html.EditorFor(model => model.BalanceAmount, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.BalanceAmount, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
         </div>
         <br />
-        <br />
-        <div class="row ">
 
-
-            <div class="col-md-2 col-md-offset-2 ">
-                <div class="form-group">
-                    <div class="col-md-1 col-md-offset-4 ">
-                        <input class="btn btn-default" style="width:100px" id="CalculateBtn" onclick="CalculateInterest()" value="Calculate" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 col-md-offset-4 ">
-                <div class="form-group">
-                    <div class="col-md-3 col-md-offset-1">
-                        <input type="submit" name="calculate" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 }
-<script>
-    function CalculateInterest() {
-        var Principle = parseFloat($("#Principle").val());
-        var Time = parseInt($("#Time").val());
-        var Rate = parseFloat($("#Interest").val());
-        //var EmiAmt = parseFloat($("#EmiAmt").val());
-        if (Principle == null) {
-            $("#Principle").val(null);
-            alert("You Have cleared Loan");
-        }
-        else {
 
-            var R = Rate / (12 * 100);
-            var t = Time * 12;
-            var top = Math.pow((1 + R), t);
-            var bot = top - 1;
-            var sp = top / bot;
-            var monthly_emi = ((Principle * R) * sp);
-            const d = new Date();
-            d.toLocaleString('en-US', { timezone: 'Indian/Christmas' });
-            d.setFullYear(d.getFullYear() + Time);
-            var nd=d.toISOString().slice(0, 10);
-            monthly_emi = monthly_emi.toFixed(2);
-            $("#Total").val(monthly_emi *12);
-            $("#EmiAmt").val(monthly_emi);
-            $("#Balance").val(monthly_emi * 12);
-            $("#DateP").val(nd);
-        }
 
-    }
-</script>
+<div class="row ">
+    <div class="col-md-9 col-md-offset-0 ">
+       <h4 style="padding:0% 20% 0% 50%">EMI HISTORY </h4>
+    </div>
 
+    <div class="col-md-3 col-md-offset-0 ">
+        <button type="button" class="btn btn-default " onclick=" location.href = '@Url.Action("Create", "LoanEMIDetails", new { id =ViewBag.AccNum })' ">PAY EMI</button>
+    </div>
+
+</div>
+<br />
+
+
+
+
+
+
+
+
+<div class="form-horizontal">
+    <div class="row">
+        <div class="col-xs-9 col-xs-offset-0">
+            @{Html.RenderAction("Grid");}
+        </div>
+    </div>
+</div>

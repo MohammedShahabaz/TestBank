@@ -20,7 +20,7 @@ namespace TestBank.Models
         public string SourceType { get; set; }
         public string TransType { get; set; }
         [DataType(DataType.Currency)]
-        [Range(0.9,999999999,ErrorMessage ="Amount must be greater than 0")]
+        
         public decimal Amount { get; set; }
         public Nullable<decimal> Balance { get; set; }
         public Nullable<System.DateTime> TxnDate { get; set; }

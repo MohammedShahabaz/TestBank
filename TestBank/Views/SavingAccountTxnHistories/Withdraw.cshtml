@@ -4,13 +4,13 @@
 @{
     ViewBag.Title = "Withdraw";
 }
-<h3 style="padding:0.5% 23%">WITHDRAW</h3>
+<h3 style="padding:0.5% 40%">WITHDRAW</h3>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    <div class="form-horizontal col-md-offset-3">
 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

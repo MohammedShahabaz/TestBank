@@ -4,7 +4,7 @@
 }
 
 
-<div style="height:200px; overflow:auto; width:1000px" class="container ">
+<div style="height:215px; overflow:auto; width:1000px" class="container ">
     
         <table style="width:100%" class="col-md-8 table-bordered table-striped table-condensed table-fixed">
             <thead >
@@ -51,7 +51,7 @@
                                         <button type="button" style="padding:5% 20% 5% 20%" class="btn btn-default" onclick="location.href = '@Url.Action("Edit", "SavingAccountDetails", new { id = item.AccNum })'">Update</button>
                                     </div>
                                     <div class="col-xs-3 ">
-                                        <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Details", "SavingAccountDetails", new { id = item.AccNum })'">Check Details</button>
+                                        <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Details", "SavingAccountDetails", new { id = item.AccNum })'">View Account</button>
                                     </div>
                                     <div class="col-xs-3 col-xs-offset-1">
                                         <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Delete", "CustomerAccounts", new { id = item.AccNum })'">Delete</button>
@@ -64,7 +64,7 @@
                                         <button type="button" style="padding:5% 20% 5% 20%" class="btn btn-default" onclick="location.href = '@Url.Action("Edit", "LoanAccountDetails", new { id = item.AccNum })'">Update</button>
                                     </div>
                                     <div class="col-xs-3 ">
-                                        <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Details", "LoanAccountDetails", new { id = item.AccNum })'">Check Details</button>
+                                        <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("ViewAccount", "LoanAccountDetails", new { id = item.AccNum })'">View Account</button>
                                     </div>
                                     <div class="col-xs-3 col-xs-offset-1">
                                         <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Delete", "LoanAccountDetails", new { id = item.AccNum })'">Delete</button>

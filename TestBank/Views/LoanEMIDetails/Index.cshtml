@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TestBank.Models.LoanEMIDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EMIDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMIAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMIStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RemainingBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMIReminder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoanAccountDetail.IFSCcode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMIDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMIAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMIStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RemainingBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMIReminder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoanAccountDetail.IFSCcode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EMIID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EMIID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EMIID })
+        </td>
+    </tr>
+}
+
+</table>

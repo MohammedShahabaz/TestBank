@@ -6,77 +6,104 @@
 
 <h3 style="padding:0.5% 35%">ADD ACCOUNT</h3>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
 
-    <hr />
-    <div class="row ">
-        <div class="col-md-9 col-md-offset-3">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group ">
-                @Html.LabelFor(model => model.CustID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-3 col-md-offset-0">
-                    @Html.EditorFor(model => model.CustID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+    <div class="form-horizontal">
 
-                    @Html.ValidationMessageFor(model => model.CustID, "", new { @class = "text-danger" })
+        <hr />
+        <div class="row ">
+            <div class="col-md-9 col-md-offset-3">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group ">
+                    @Html.LabelFor(model => model.CustID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3 col-md-offset-0">
+                        @Html.EditorFor(model => model.CustID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                        @Html.ValidationMessageFor(model => model.CustID, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <br />
-    <div class="row ">
-        <div class="col-md-9 col-md-offset-3">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group ">
-                @Html.LabelFor(model => model.CustomerDetail.FirstName, "Account Holder", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-3 col-md-offset-0">
-                    @Html.EditorFor(model => model.CustomerDetail.FirstName, new { htmlAttributes = new { @class = "form-control",@Value=@ViewBag.customer.FirstName ,@readonly = "readonly" } })
+        <br />
+        <div class="row ">
+            <div class="col-md-9 col-md-offset-3">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group ">
+                    @Html.LabelFor(model => model.CustomerDetail.FirstName, "Account Holder", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3 col-md-offset-0">
+                        @Html.EditorFor(model => model.CustomerDetail.FirstName, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.customer.FirstName, @readonly = "readonly" } })
 
-                    @Html.ValidationMessageFor(model => model.CustomerDetail.FirstName, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.CustomerDetail.FirstName, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <br />
-    <div class="row ">
-        <div class="col-md-9 col-md-offset-3">
-            <div class="form-group">
-                @Html.LabelFor(model => model.AccountType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-3 col-md-offset-0">
-                    @Html.DropDownListFor(model => model.AccountType, ViewBag.Acctypes as SelectList, "--- Select Account Type ---", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.AccountType, "", new { @class = "text-danger" })
+        <br />
+        <div class="row ">
+            <div class="col-md-9 col-md-offset-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AccountType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8 col-md-offset-0">
+                        <select id="AccountDropDown" name="AccountType" style="width:190px ;height:33px" >
+                            <option value="-1">--Select Account Type--</option>
+                            <option >  Savings Account  </option>
+                            <option >  Loan Account   </option>
+                        </select>
+                        @*@Html.DropDownListFor(model => model.AccountType, ViewBag.Acctypes as SelectList, "--- Select Account Type ---", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AccountType, "", new { @class = "text-danger" })*@
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <br />
-    <div class="row ">
-        <div class="col-md-9 col-md-offset-3">
-            <div class="form-group">
-                @Html.LabelFor(model => model.AccountSubType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-3 col-md-offset-0">
-                    @Html.DropDownListFor(model => model.AccountSubType, ViewBag.Accsubtypes as SelectList, "--- Select Account SubType ---", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.AccountSubType, "", new { @class = "text-danger" })
+        <br />
+        <div class="row ">
+            <div class="col-md-9 col-md-offset-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AccountSubType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3 col-md-offset-0">
+                        <select id="AccountSubDropDown" name="AccountSubType" style="width:190px ;height:33px"> </select>
+                        @*@Html.DropDownListFor(model => model.AccountSubType, ViewBag.Accsubtypes as SelectList, "--- Select Account SubType ---", new { @class = "form-control" })*@
+                        @Html.ValidationMessageFor(model => model.AccountSubType, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <br /><br />
+        <br /><br />
 
-    <div class="row">
-        <div class="col-md-1 col-md-offset-4">
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="row">
+            <div class="col-md-1 col-md-offset-4">
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+            <div class="col-md-2 col-md-offset-0">
+                <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Search","CustomerDetails")'">Cancel</button>
             </div>
         </div>
-        <div class="col-md-2 col-md-offset-0">
-            <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Search","CustomerDetails")'">Cancel</button>
-        </div>
     </div>
-</div>
-       
-        }
 
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#AccountDropDown').on('change', function () {
+                var account = $(this);
+                if (account.val() === "Savings Account") {
+                    var s = '<option value="-1">--Select Account Sub Types--</option>';
+                    s += '<option>Regular</option>';
+                    s += '<option>Savings</option>';
+                    $('#AccountSubDropDown').html(s);
+                } else if (account.val() === "Loan Account"){
+                    var s = '<option value="-1">--Select Account Sub Types--</option>';
+                    s += '<option>Personal</option>';
+                    s += '<option>Buisness</option>';
+                    $('#AccountSubDropDown').html(s);
+                }
+              
+                  });
+             });
+</script>

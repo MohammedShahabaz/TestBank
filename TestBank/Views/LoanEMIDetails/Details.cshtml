@@ -1,0 +1,68 @@
+﻿@model TestBank.Models.LoanEMIDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="padding:0% 28%">EMI Paid Successfully</h2>
+<h4 style="padding:0% 30%"> check Details</h4>
+<div class="col-md-offset-3">
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EMIDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMIDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMIAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMIAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMIStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMIStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RemainingBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RemainingBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMIReminder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMIReminder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoanAccountDetail.IFSCcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoanAccountDetail.IFSCcode)
+        </dd>
+
+    </dl>
+    <br />
+    <div class="col-md-2 col-md-offset-1">
+        <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("ViewAccount","LoanAccountDetails",new { id = ViewBag.AccNum })'">Back</button>
+    </div>
+    <br />
+</div>
+

@@ -36,6 +36,8 @@ namespace TestBank.Controllers
             ViewBag.AccNum = savingAccountTxnHistory.AccNum;
             return View(savingAccountTxnHistory);
         }
+     
+      
         public ActionResult Withdraw(int? id)
         {
             SavingAccountDetail c = db.SavingAccountDetails.Find(id);
@@ -44,6 +46,7 @@ namespace TestBank.Controllers
             o.AccNum = c.AccNum;
             o.Balance = c.Balance;
             ViewBag.AccNum = o.AccNum;
+             
            // ViewBag.AccNum = new SelectList(db.SavingAccountDetails, "AccNum", "SavingAccType");
             return View(o);
         }
@@ -51,10 +54,18 @@ namespace TestBank.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Withdraw([Bind(Include = "TxnID,TxnDate,AccNum,Balance,SourceType,TransType,Amount")] SavingAccountTxnHistory savingAccountTxnHistory)
         {
+            if (savingAccountTxnHistory.Amount == 0 || savingAccountTxnHistory.Amount > 9999999)
+            {
+                ViewBag.AccNum = savingAccountTxnHistory.AccNum;
+                ModelState.AddModelError("Amount", "Enter amount between 1-9999999");
+                return View();
+            }
             SavingAccountDetail s = db.SavingAccountDetails.Find(savingAccountTxnHistory.AccNum);
             if (s.Balance < savingAccountTxnHistory.Amount)
             {
+                ViewBag.AccNum = savingAccountTxnHistory.AccNum;
                 ModelState.AddModelError("Balance", "Insufficient Balance");
+                return View();
             }
             else
             {
@@ -64,9 +75,12 @@ namespace TestBank.Controllers
                 { 
                      limit+=trans.Amount;
                 }
+                limit += savingAccountTxnHistory.Amount;
                 if (limit > s.TrasferLimit)
                 {
+                    ViewBag.AccNum = savingAccountTxnHistory.AccNum;
                     ModelState.AddModelError("Amount", "Transfer Limit Exceeded");
+                    return View();
                 }
                 else
                 {
@@ -105,6 +119,12 @@ namespace TestBank.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TxnID,TxnDate,AccNum,Balance,SourceType,TransType,Amount")] SavingAccountTxnHistory savingAccountTxnHistory)
         {
+            if (savingAccountTxnHistory.Amount == 0||savingAccountTxnHistory.Amount>9999999)
+            {
+                ViewBag.AccNum = savingAccountTxnHistory.AccNum;
+                ModelState.AddModelError("Amount", "Enter amount between 1-9999999");
+                return View();
+            }
             if (ModelState.IsValid)
             {
                 SavingAccountDetail s = db.SavingAccountDetails.Find(savingAccountTxnHistory.AccNum);

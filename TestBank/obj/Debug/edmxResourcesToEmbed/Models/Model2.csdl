@@ -80,12 +80,12 @@
     </Key>
     <Property Name="EMIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="AccNum" Type="Int32" />
-    <Property Name="EMIDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="EMIAmount" Type="Int32" />
+    <Property Name="EMIDate" Type="DateTime" Precision="3" Nullable="true" />
+    <Property Name="EMIAmount" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="EMIStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="EMIRemainder" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="RemainingBalance" Type="Int32" />
+    <Property Name="RemainingBalance" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="LoanAccountDetail" Relationship="Self.fk_14" FromRole="LoanEMIDetails" ToRole="LoanAccountDetails" />
+    <Property Name="EMIReminder" Type="DateTime" Precision="3" Nullable="true" />
   </EntityType>
   <EntityType Name="PostalCode">
     <Key>

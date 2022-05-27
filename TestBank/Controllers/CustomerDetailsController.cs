@@ -23,17 +23,6 @@ namespace TestBank.Controllers
             return View(customerDetails.ToList());
         }
 
-        public List<Country> GetCountryList()
-        {
-            List<Country> countries = db.Countries.ToList();
-            return countries;
-        }
-        public ActionResult GetStateList(int? CountryCode)
-        {
-            List<State> selectList = db.States.Where(x=>x.CountryCode==CountryCode).ToList();
-            ViewBag.Slist = new SelectList(selectList, "StateCode", "StateName");
-            return PartialView("DisplayStates");
-        }
         
             public ActionResult Grid(int? id)
         {
@@ -90,10 +79,8 @@ namespace TestBank.Controllers
         // GET: CustomerDetails/Create
         public ActionResult Create()
         {
-            ViewBag.City = new SelectList(db.Cities, "CityCode", "CityName");
-            ViewBag.Country = new SelectList(db.Countries, "CountryCode", "CountryName");
-            ViewBag.ZIPCode = new SelectList(db.PostalCodes, "ZipCode", "ZipCode");
-            ViewBag.State = new SelectList(db.States, "StateCode", "StateName");
+            ViewBag.country = db.Countries.ToList();
+            
             return View();
         }
 
@@ -131,10 +118,9 @@ namespace TestBank.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.City = new SelectList(db.Cities, "CityCode", "CityName", customerDetail.City);
-            ViewBag.Country = new SelectList(db.Countries, "CountryCode", "CountryName", customerDetail.Country);
-            ViewBag.ZIPCode = new SelectList(db.PostalCodes, "ZipCode", "ZipCode", customerDetail.ZIPCode);
-            ViewBag.State = new SelectList(db.States, "StateCode", "StateName", customerDetail.State);
+            ViewBag.country = db.Countries.ToList();
+            ViewBag.stt = db.States.Find(customerDetail.State);
+
             return View(customerDetail);
         }
 
@@ -184,6 +170,36 @@ namespace TestBank.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult StateList(int countryId)
+        {
+
+            return Json(db.States.Where(s => s.CountryCode == countryId).Select(s => new
+            {
+                Id = s.StateCode,
+                Name = s.StateName
+            }).ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult CityList(int stateId)
+        {
+
+            return Json(db.Cities.Where(c => c.Statecode == stateId).Select(c => new
+            {
+                Id = c.CityCode,
+                Name = c.CityName
+            }).ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ZipcodeList(int cityId)
+        {
+
+            return Json(db.PostalCodes.Where(z => z.Citycode == cityId).Select(z => new
+            {
+                Id = z.ZipCode,
+
+            }).ToList(), JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

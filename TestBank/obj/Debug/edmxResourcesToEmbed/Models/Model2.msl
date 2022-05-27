@@ -68,12 +68,12 @@
     <EntitySetMapping Name="LoanEMIDetails">
       <EntityTypeMapping TypeName="TestBankDBModel1.LoanEMIDetail">
         <MappingFragment StoreEntitySet="LoanEMIDetails">
+          <ScalarProperty Name="EMIReminder" ColumnName="EMIReminder" />
           <ScalarProperty Name="EMIID" ColumnName="EMIID" />
           <ScalarProperty Name="AccNum" ColumnName="AccNum" />
           <ScalarProperty Name="EMIDate" ColumnName="EMIDate" />
           <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
           <ScalarProperty Name="EMIStatus" ColumnName="EMIStatus" />
-          <ScalarProperty Name="EMIRemainder" ColumnName="EMIRemainder" />
           <ScalarProperty Name="RemainingBalance" ColumnName="RemainingBalance" />
         </MappingFragment>
       </EntityTypeMapping>

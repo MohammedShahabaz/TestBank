@@ -101,8 +101,9 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ZIPCode, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-8 col-xs-offset-2">
-                        @Html.DropDownList("ZIPCode", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.ZIPCode, "", new { @class = "text-danger" })
+                        <select id="ZipcodeDropDown" name="ZIPCode" style="width:166px">
+                            <option value="-1">--Select ZIPCode--</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -115,8 +116,9 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-8 col-xs-offset-1">
-                        @Html.DropDownList("City", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                        <select id="CitiesDropDown" name="City" style="width:166px">
+                            <option value="-1">--Select City--</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -124,8 +126,10 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-8 col-xs-offset-1">
-                        @Html.DropDownList("State", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                        <select id="StateDropDown" name="State" style="width:166px">
+                            <option value="-1">--Select State--</option>
+                        </select>
+                        
                     </div>
                 </div>
             </div>
@@ -133,8 +137,13 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-xs-8 col-xs-offset-2">
-                        @Html.DropDownList("Country", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                        <select id="CountryDropDown" name="Country" style="width:166px">
+                            <option value="-1">--Select Country--</option>
+                            @foreach (var country in ViewBag.country)
+                            {
+                                <option value="@country.CountryCode">@country.CountryName</option>
+                            }
+                        </select>
                     </div>
                 </div>
             </div>
@@ -161,3 +170,70 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<style type="text/css">
+    select {
+        width: 200px;
+        height: 28px;
+    }
+</style>
+<script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#CountryDropDown').on('change', function () {
+
+                var countryId = $('#CountryDropDown option:selected').val();
+
+                $.ajax({
+                    type: 'GET',
+                    data: { countryId: countryId },
+                    url: '@Url.Action("StateList", "CustomerDetails")',
+                    success: function (result) {
+                        var s = '<option value="-1">--Select States--</option>';
+                        for (var i = 0; i < result.length; i++) {
+                            s += '<option value= "'+result[i].Id+'"> ' + result[i].Name + '</option > ';
+                        }
+                        $('#StateDropDown').html(s);
+                    }
+                });
+            });
+
+            $('#StateDropDown').on('change', function () {
+
+                var stateId = $('#StateDropDown option:selected').val();
+
+                $.ajax({
+                    type: 'GET',
+                    data: { stateId: stateId },
+                    url: '@Url.Action("CityList", "CustomerDetails")',
+                    success: function (result) {
+                        var s = '<option value="-1">Select City</option>';
+                        for (var i = 0; i < result.length; i++) {
+                            s += '<option value= "' + result[i].Id + '"> ' + result[i].Name + '</option > ';
+                        }
+                        $('#CitiesDropDown').html(s);
+
+                    }
+                });
+            });
+
+            $('#CitiesDropDown').on('change', function () {
+
+                var cityId = $('#CitiesDropDown option:selected').val();
+
+                $.ajax({
+                    type: 'GET',
+                    data: { cityId: cityId },
+                    url: '@Url.Action("ZipcodeList", "CustomerDetails")',
+                    success: function (result) {
+                        var s = '';
+                        for (var i = 0; i < result.length; i++) {
+                            s += '<option value= "' + result[i].Id + '"> ' + result[i].Id + '</option > ';
+                        }
+                        $('#ZipcodeDropDown').html(s);
+
+                    }
+                });
+            });
+
+        });
+</script>

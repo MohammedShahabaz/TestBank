@@ -16,11 +16,11 @@ namespace TestBank.Models
     {
         public int EMIID { get; set; }
         public Nullable<int> AccNum { get; set; }
-        public System.DateTime EMIDate { get; set; }
-        public Nullable<int> EMIAmount { get; set; }
+        public Nullable<System.DateTime> EMIDate { get; set; }
+        public Nullable<decimal> EMIAmount { get; set; }
         public string EMIStatus { get; set; }
-        public string EMIRemainder { get; set; }
-        public Nullable<int> RemainingBalance { get; set; }
+        public Nullable<decimal> RemainingBalance { get; set; }
+        public Nullable<System.DateTime> EMIReminder { get; set; }
     
         public virtual LoanAccountDetail LoanAccountDetail { get; set; }
     }

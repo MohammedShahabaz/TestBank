@@ -1,0 +1,64 @@
+﻿@model IEnumerable < TestBank.Models.SavingAccountTxnHistory>
+@{
+    ViewBag.Title = "Grid";
+}
+
+
+<div style="height:218px; overflow:auto; width:1000px" class="container ">
+
+    <table style="width:100%" class="col-md-8 table-bordered table-striped table-condensed table-fixed">
+        <thead>
+            <tr>
+                <th class="col" style="position:-webkit-sticky; position:sticky ;top:0;background-color:white">
+                    @Html.DisplayNameFor(model => model.AccNum)
+                </th>
+                <th class="col" style="position: -webkit-sticky; position: sticky; top: 0; background-color: white">
+                    @Html.DisplayNameFor(model => model.TxnDate)
+                </th>
+                <th class="col" style="position: -webkit-sticky; position: sticky; top: 0; background-color: white">
+                    @Html.DisplayNameFor(model => model.TransType)
+                </th>
+                <th class="col" style="position: -webkit-sticky; position: sticky; top: 0; background-color: white">
+                    @Html.DisplayNameFor(model => model.Amount)
+                </th>
+                <th class="col" style="position: -webkit-sticky; position: sticky; top: 0; background-color: white">
+                    @Html.DisplayNameFor(model => model.SourceType)
+                </th>
+                <th class="col" style="position: -webkit-sticky; position: sticky; top: 0; background-color: white">
+                    @Html.DisplayNameFor(model => model.Balance)
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.AccNum)
+                    </td>
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.TxnDate)
+                    </td>
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.TransType)
+                    </td>
+
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.SourceType)
+                    </td>
+                    <td class="col">
+                        @Html.DisplayFor(modelItem => item.Balance)
+                    </td>
+                   
+                </tr>
+            </tbody>
+        }
+
+    </table>
+</div>
+
+
+

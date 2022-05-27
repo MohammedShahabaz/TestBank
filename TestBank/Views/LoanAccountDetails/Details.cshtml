@@ -4,12 +4,19 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h3 style="padding:1%  25%">Loan Account Created Successfully</h3>
 
-<div>
-    <h4>LoanAccountDetail</h4>
+<div class="col-md-offset-3">
+    <h4 style="padding:1%  10%">Loan Account Detail</h4>
     <hr />
+
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AccNum)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AccNum)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.IFSCcode)
         </dt>
@@ -107,8 +114,10 @@
         </dd>
 
     </dl>
+    <hr />
+    <div class="col-md-3 col-md-offset-2">
+        <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Search", "CustomerDetails")'">Back</button>
+    </div>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AccNum }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

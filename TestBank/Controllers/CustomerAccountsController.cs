@@ -43,10 +43,8 @@ namespace TestBank.Controllers
              ViewBag.customer = customerdetail;
             CustomerAccount c = new CustomerAccount();
             c.CustID = customerdetail.CustID;
-            ViewBag.AccNum = new SelectList(db.SavingAccountDetails, "AccNum", "SavingAccType");
-            ViewBag.CustID = new SelectList(db.CustomerDetails, "CustID", "FirstName");
-            ViewBag.Acctypes = new SelectList(new List<object> { "Savings", "Loan" });
-            ViewBag.Accsubtypes = new SelectList(new List<object> { "Regular", "Salary" });
+
+            
             return View(c);
         }
 
@@ -67,6 +65,9 @@ namespace TestBank.Controllers
                 }
                 else
                 {
+                    LoanAccountDetail l = new LoanAccountDetail();
+                    l.AccNum = customerAccount.AccNum;
+                    l.LoanAccountType = customerAccount.AccountSubType;
                     return RedirectToAction("Create", "LoanAccountDetails", new { id = customerAccount.AccNum });
                 }
             }
@@ -136,7 +137,7 @@ namespace TestBank.Controllers
             db.SaveChanges();
             return RedirectToAction("Search","CustomerDetails");
         }
-
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TestBankDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TestBankDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cities">
           <Key>
             <PropertyRef Name="CityCode" />
@@ -70,11 +70,11 @@
           </Key>
           <Property Name="EMIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AccNum" Type="int" />
-          <Property Name="EMIDate" Type="date" Nullable="false" />
-          <Property Name="EMIAmount" Type="int" />
+          <Property Name="EMIAmount" Type="decimal" Precision="18" Scale="0" />
           <Property Name="EMIStatus" Type="varchar" MaxLength="100" />
-          <Property Name="EMIRemainder" Type="varchar" MaxLength="100" />
-          <Property Name="RemainingBalance" Type="int" />
+          <Property Name="RemainingBalance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="EMIDate" Type="datetime" />
+          <Property Name="EMIReminder" Type="datetime" />
         </EntityType>
         <EntityType Name="PostalCodes">
           <Key>
@@ -318,8 +318,7 @@
             <End Role="CustomerAccounts" EntitySet="CustomerAccounts" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TestBankDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -403,12 +402,12 @@
           </Key>
           <Property Name="EMIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccNum" Type="Int32" />
-          <Property Name="EMIDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EMIAmount" Type="Int32" />
+          <Property Name="EMIDate" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="EMIAmount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="EMIStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="EMIRemainder" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="RemainingBalance" Type="Int32" />
+          <Property Name="RemainingBalance" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="LoanAccountDetail" Relationship="Self.fk_14" FromRole="LoanEMIDetails" ToRole="LoanAccountDetails" />
+          <Property Name="EMIReminder" Type="DateTime" Precision="3" Nullable="true" />
         </EntityType>
         <EntityType Name="PostalCode">
           <Key>
@@ -733,12 +732,12 @@
           <EntitySetMapping Name="LoanEMIDetails">
             <EntityTypeMapping TypeName="TestBankDBModel1.LoanEMIDetail">
               <MappingFragment StoreEntitySet="LoanEMIDetails">
+                <ScalarProperty Name="EMIReminder" ColumnName="EMIReminder" />
                 <ScalarProperty Name="EMIID" ColumnName="EMIID" />
                 <ScalarProperty Name="AccNum" ColumnName="AccNum" />
                 <ScalarProperty Name="EMIDate" ColumnName="EMIDate" />
                 <ScalarProperty Name="EMIAmount" ColumnName="EMIAmount" />
                 <ScalarProperty Name="EMIStatus" ColumnName="EMIStatus" />
-                <ScalarProperty Name="EMIRemainder" ColumnName="EMIRemainder" />
                 <ScalarProperty Name="RemainingBalance" ColumnName="RemainingBalance" />
               </MappingFragment>
             </EntityTypeMapping>

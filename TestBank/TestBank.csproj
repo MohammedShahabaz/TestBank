@@ -130,6 +130,7 @@
     <Compile Include="Controllers\CustomerAccountsController.cs" />
     <Compile Include="Controllers\CustomerDetailsController.cs" />
     <Compile Include="Controllers\LoanAccountDetailsController.cs" />
+    <Compile Include="Controllers\LoanEMIDetailsController.cs" />
     <Compile Include="Controllers\PostalCodesController.cs" />
     <Compile Include="Controllers\SavingAccountDetailsController.cs" />
     <Compile Include="Controllers\SavingAccountTxnHistoriesController.cs" />
@@ -267,7 +268,6 @@
     <Content Include="Views\Cities\Details.cshtml" />
     <Content Include="Views\Cities\Edit.cshtml" />
     <Content Include="Views\Cities\Index.cshtml" />
-    <Content Include="Views\Shared\DisplayStates.cshtml" />
     <Content Include="Views\CustomerAccounts\Create.cshtml" />
     <Content Include="Views\CustomerAccounts\Delete.cshtml" />
     <Content Include="Views\CustomerAccounts\Details.cshtml" />
@@ -290,7 +290,14 @@
     <Content Include="Views\LoanAccountDetails\Details.cshtml" />
     <Content Include="Views\LoanAccountDetails\Edit.cshtml" />
     <Content Include="Views\LoanAccountDetails\Index.cshtml" />
-    <Content Include="Views\LoanAccountDetails\Calculate.cshtml" />
+    <Content Include="Views\LoanAccountDetails\ViewAccount.cshtml" />
+    <Content Include="Views\LoanEMIDetails\Create.cshtml" />
+    <Content Include="Views\LoanEMIDetails\Delete.cshtml" />
+    <Content Include="Views\LoanEMIDetails\Details.cshtml" />
+    <Content Include="Views\LoanEMIDetails\Edit.cshtml" />
+    <Content Include="Views\LoanEMIDetails\Index.cshtml" />
+    <Content Include="Views\SavingAccountDetails\Grid.cshtml" />
+    <Content Include="Views\LoanAccountDetails\Grid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
