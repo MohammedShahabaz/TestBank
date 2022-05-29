@@ -12,7 +12,7 @@ namespace TestBank.Controllers
 {
     public class SavingAccountDetailsController : Controller
     {
-        private TestBankDBEntities2 db = new TestBankDBEntities2();
+        private BankEntities db = new BankEntities();
 
         // GET: SavingAccountDetails
         public ActionResult Index()
@@ -23,6 +23,23 @@ namespace TestBank.Controllers
 
         // GET: SavingAccountDetails/Details/5
         public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SavingAccountDetail savingAccountDetail = db.SavingAccountDetails.Find(id);
+            if (savingAccountDetail == null)
+            {
+                return HttpNotFound();
+            }
+            CustomerAccount c = db.CustomerAccounts.Find(savingAccountDetail.AccNum);
+            ViewBag.acno = id;
+            ViewBag.CustID = c.CustID;
+            return View(savingAccountDetail);
+        }
+
+        public ActionResult success(int? id)
         {
             if (id == null)
             {
@@ -67,7 +84,7 @@ namespace TestBank.Controllers
             {
                 db.SavingAccountDetails.Add(savingAccountDetail);
                 db.SaveChanges();
-                return RedirectToAction("Details",new { id = savingAccountDetail.AccNum });
+                return RedirectToAction("success", new { id = savingAccountDetail.AccNum });
             }
 
             ViewBag.AccNum = new SelectList(db.CustomerAccounts, "AccNum", "AccountType", savingAccountDetail.AccNum);
@@ -86,7 +103,8 @@ namespace TestBank.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SavingAccType = new SelectList(new List<object> { "Regular", "Salary" });
+           
+            ViewBag.Accsubtypes = new SelectList(new List<object> { "Regular Savings", "Salary Savings" });
             ViewBag.AccNum = new SelectList(db.CustomerAccounts, "AccNum", "AccountType", savingAccountDetail.AccNum);
             return View(savingAccountDetail);
         }
@@ -100,6 +118,8 @@ namespace TestBank.Controllers
         {
             if (ModelState.IsValid)
             {
+                CustomerAccount a = db.CustomerAccounts.Find(savingAccountDetail.AccNum);
+                a.AccountSubType = savingAccountDetail.SavingAccType;
                 db.Entry(savingAccountDetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Search","CustomerDetails");

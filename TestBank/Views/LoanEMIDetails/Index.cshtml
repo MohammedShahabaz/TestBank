@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.AccNum)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.EMIDate)
         </th>
         <th>
@@ -33,31 +36,34 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMIDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMIAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMIStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RemainingBalance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMIReminder)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoanAccountDetail.IFSCcode)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EMIID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EMIID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EMIID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.AccNum)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EMIDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EMIAmount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EMIStatus)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RemainingBalance)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EMIReminder)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LoanAccountDetail.IFSCcode)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.EMIID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.EMIID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.EMIID })
+    </td>
+</tr>
 }
 
 </table>

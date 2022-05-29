@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TestBankDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="BankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="City">
     <Key>
       <PropertyRef Name="CityCode" />
@@ -7,9 +7,9 @@
     <Property Name="CityCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Statecode" Type="Int32" />
-    <NavigationProperty Name="State" Relationship="Self.fk_2" FromRole="Cities" ToRole="States" />
-    <NavigationProperty Name="PostalCodes" Relationship="Self.fk_3" FromRole="Cities" ToRole="PostalCodes" />
-    <NavigationProperty Name="CustomerDetails" Relationship="Self.fk_5" FromRole="Cities" ToRole="CustomerDetails" />
+    <NavigationProperty Name="State" Relationship="Self.fk_2" FromRole="City" ToRole="State" />
+    <NavigationProperty Name="PostalCodes" Relationship="Self.fk_3" FromRole="City" ToRole="PostalCode" />
+    <NavigationProperty Name="CustomerDetails" Relationship="Self.fk_5" FromRole="City" ToRole="CustomerDetails" />
   </EntityType>
   <EntityType Name="Country">
     <Key>
@@ -17,8 +17,8 @@
     </Key>
     <Property Name="CountryCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="States" Relationship="Self.fk_1" FromRole="Countries" ToRole="States" />
-    <NavigationProperty Name="CustomerDetails" Relationship="Self.fk_7" FromRole="Countries" ToRole="CustomerDetails" />
+    <NavigationProperty Name="States" Relationship="Self.fk_1" FromRole="Country" ToRole="State" />
+    <NavigationProperty Name="CustomerDetails" Relationship="Self.fk_7" FromRole="Country" ToRole="CustomerDetails" />
   </EntityType>
   <EntityType Name="CustomerAccount">
     <Key>
@@ -26,8 +26,8 @@
     </Key>
     <Property Name="CustID" Type="Int32" />
     <Property Name="AccNum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="AccountType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="AccountSubType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AccountType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountSubType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="SavingAccountDetail" Relationship="Self.fk_10" FromRole="CustomerAccounts" ToRole="SavingAccountDetails" />
     <NavigationProperty Name="LoanAccountDetail" Relationship="Self.fk_13" FromRole="CustomerAccounts" ToRole="LoanAccountDetails" />
     <NavigationProperty Name="CustomerDetail" Relationship="Self.fk_8" FromRole="CustomerAccounts" ToRole="CustomerDetails" />
@@ -42,18 +42,18 @@
     <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="MaritalStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ZIPCode" Type="Int32" />
-    <Property Name="City" Type="Int32" />
-    <Property Name="State" Type="Int32" />
-    <Property Name="Country" Type="Int32" />
-    <Property Name="DOB" Type="DateTime" Precision="0" />
-    <Property Name="Mobile" Type="Decimal" Precision="10" Scale="0" />
-    <NavigationProperty Name="City1" Relationship="Self.fk_5" FromRole="CustomerDetails" ToRole="Cities" />
-    <NavigationProperty Name="Country1" Relationship="Self.fk_7" FromRole="CustomerDetails" ToRole="Countries" />
+    <Property Name="ZIPCode" Type="Int32" Nullable="false" />
+    <Property Name="City" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <Property Name="Country" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City1" Relationship="Self.fk_5" FromRole="CustomerDetails" ToRole="City" />
+    <NavigationProperty Name="Country1" Relationship="Self.fk_7" FromRole="CustomerDetails" ToRole="Country" />
     <NavigationProperty Name="CustomerAccounts" Relationship="Self.fk_8" FromRole="CustomerDetails" ToRole="CustomerAccounts" />
-    <NavigationProperty Name="PostalCode" Relationship="Self.fk_4" FromRole="CustomerDetails" ToRole="PostalCodes" />
-    <NavigationProperty Name="State1" Relationship="Self.fk_6" FromRole="CustomerDetails" ToRole="States" />
+    <NavigationProperty Name="PostalCode" Relationship="Self.fk_4" FromRole="CustomerDetails" ToRole="PostalCode" />
+    <NavigationProperty Name="State1" Relationship="Self.fk_6" FromRole="CustomerDetails" ToRole="State" />
   </EntityType>
   <EntityType Name="LoanAccountDetail">
     <Key>
@@ -69,8 +69,8 @@
     <Property Name="TotalLoanAmount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="MonthlyPayment" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="LoanAccountType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="LoanIssuedDate" Type="DateTime" Precision="0" />
-    <Property Name="LoanPayDate" Type="DateTime" Precision="0" />
+    <Property Name="LoanIssuedDate" Type="DateTime" Precision="3" />
+    <Property Name="LoanPayDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="CustomerAccount" Relationship="Self.fk_13" FromRole="LoanAccountDetails" ToRole="CustomerAccounts" />
     <NavigationProperty Name="LoanEMIDetails" Relationship="Self.fk_14" FromRole="LoanAccountDetails" ToRole="LoanEMIDetails" />
   </EntityType>
@@ -80,12 +80,12 @@
     </Key>
     <Property Name="EMIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="AccNum" Type="Int32" />
-    <Property Name="EMIDate" Type="DateTime" Precision="3" Nullable="true" />
+    <Property Name="EMIDate" Type="DateTime" Precision="0" />
     <Property Name="EMIAmount" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="EMIStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EMIReminder" Type="DateTime" Precision="0" />
     <Property Name="RemainingBalance" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="LoanAccountDetail" Relationship="Self.fk_14" FromRole="LoanEMIDetails" ToRole="LoanAccountDetails" />
-    <Property Name="EMIReminder" Type="DateTime" Precision="3" Nullable="true" />
   </EntityType>
   <EntityType Name="PostalCode">
     <Key>
@@ -93,8 +93,8 @@
     </Key>
     <Property Name="ZipCode" Type="Int32" Nullable="false" />
     <Property Name="Citycode" Type="Int32" />
-    <NavigationProperty Name="City" Relationship="Self.fk_3" FromRole="PostalCodes" ToRole="Cities" />
-    <NavigationProperty Name="CustomerDetails" Relationship="Self.fk_4" FromRole="PostalCodes" ToRole="CustomerDetails" />
+    <NavigationProperty Name="City" Relationship="Self.fk_3" FromRole="PostalCode" ToRole="City" />
+    <NavigationProperty Name="CustomerDetails" Relationship="Self.fk_4" FromRole="PostalCode" ToRole="CustomerDetails" />
   </EntityType>
   <EntityType Name="SavingAccountDetail">
     <Key>
@@ -103,9 +103,9 @@
     <Property Name="AccNum" Type="Int32" Nullable="false" />
     <Property Name="SavingAccType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="IFSCcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="TrasferLimit" Type="Int32" Nullable="false" />
     <Property Name="BranchCode" Type="Int32" Nullable="false" />
-    <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="CustomerAccount" Relationship="Self.fk_10" FromRole="SavingAccountDetails" ToRole="CustomerAccounts" />
     <NavigationProperty Name="SavingAccountTxnHistories" Relationship="Self.fk_12" FromRole="SavingAccountDetails" ToRole="SavingAccountTxnHistory" />
   </EntityType>
@@ -114,12 +114,12 @@
       <PropertyRef Name="TxnID" />
     </Key>
     <Property Name="TxnID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TxnDate" Type="DateTime" Precision="3" />
     <Property Name="AccNum" Type="Int32" />
     <Property Name="SourceType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TransType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Amount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="Balance" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="TxnDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="SavingAccountDetail" Relationship="Self.fk_12" FromRole="SavingAccountTxnHistory" ToRole="SavingAccountDetails" />
   </EntityType>
   <EntityType Name="State">
@@ -129,39 +129,39 @@
     <Property Name="StateCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CountryCode" Type="Int32" />
-    <NavigationProperty Name="Cities" Relationship="Self.fk_2" FromRole="States" ToRole="Cities" />
-    <NavigationProperty Name="Country" Relationship="Self.fk_1" FromRole="States" ToRole="Countries" />
-    <NavigationProperty Name="CustomerDetails" Relationship="Self.fk_6" FromRole="States" ToRole="CustomerDetails" />
+    <NavigationProperty Name="Cities" Relationship="Self.fk_2" FromRole="State" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="Self.fk_1" FromRole="State" ToRole="Country" />
+    <NavigationProperty Name="CustomerDetails" Relationship="Self.fk_6" FromRole="State" ToRole="CustomerDetails" />
   </EntityType>
   <Association Name="fk_2">
-    <End Role="States" Type="Self.State" Multiplicity="0..1" />
-    <End Role="Cities" Type="Self.City" Multiplicity="*" />
+    <End Role="State" Type="Self.State" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="States">
+      <Principal Role="State">
         <PropertyRef Name="StateCode" />
       </Principal>
-      <Dependent Role="Cities">
+      <Dependent Role="City">
         <PropertyRef Name="Statecode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_3">
-    <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
-    <End Role="PostalCodes" Type="Self.PostalCode" Multiplicity="*" />
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="PostalCode" Type="Self.PostalCode" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Cities">
+      <Principal Role="City">
         <PropertyRef Name="CityCode" />
       </Principal>
-      <Dependent Role="PostalCodes">
+      <Dependent Role="PostalCode">
         <PropertyRef Name="Citycode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_5">
-    <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
+    <End Role="City" Type="Self.City" Multiplicity="1" />
     <End Role="CustomerDetails" Type="Self.CustomerDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Cities">
+      <Principal Role="City">
         <PropertyRef Name="CityCode" />
       </Principal>
       <Dependent Role="CustomerDetails">
@@ -170,22 +170,22 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_1">
-    <End Role="Countries" Type="Self.Country" Multiplicity="0..1" />
-    <End Role="States" Type="Self.State" Multiplicity="*" />
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="State" Type="Self.State" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Countries">
+      <Principal Role="Country">
         <PropertyRef Name="CountryCode" />
       </Principal>
-      <Dependent Role="States">
+      <Dependent Role="State">
         <PropertyRef Name="CountryCode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_7">
-    <End Role="Countries" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
     <End Role="CustomerDetails" Type="Self.CustomerDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Countries">
+      <Principal Role="Country">
         <PropertyRef Name="CountryCode" />
       </Principal>
       <Dependent Role="CustomerDetails">
@@ -230,10 +230,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_4">
-    <End Role="PostalCodes" Type="Self.PostalCode" Multiplicity="0..1" />
+    <End Role="PostalCode" Type="Self.PostalCode" Multiplicity="1" />
     <End Role="CustomerDetails" Type="Self.CustomerDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="PostalCodes">
+      <Principal Role="PostalCode">
         <PropertyRef Name="ZipCode" />
       </Principal>
       <Dependent Role="CustomerDetails">
@@ -242,10 +242,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="fk_6">
-    <End Role="States" Type="Self.State" Multiplicity="0..1" />
+    <End Role="State" Type="Self.State" Multiplicity="1" />
     <End Role="CustomerDetails" Type="Self.CustomerDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="States">
+      <Principal Role="State">
         <PropertyRef Name="StateCode" />
       </Principal>
       <Dependent Role="CustomerDetails">
@@ -277,7 +277,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="TestBankDBEntities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="BankEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cities" EntityType="Self.City" />
     <EntitySet Name="Countries" EntityType="Self.Country" />
     <EntitySet Name="CustomerAccounts" EntityType="Self.CustomerAccount" />
@@ -289,23 +289,23 @@
     <EntitySet Name="SavingAccountTxnHistories" EntityType="Self.SavingAccountTxnHistory" />
     <EntitySet Name="States" EntityType="Self.State" />
     <AssociationSet Name="fk_2" Association="Self.fk_2">
-      <End Role="States" EntitySet="States" />
-      <End Role="Cities" EntitySet="Cities" />
+      <End Role="State" EntitySet="States" />
+      <End Role="City" EntitySet="Cities" />
     </AssociationSet>
     <AssociationSet Name="fk_3" Association="Self.fk_3">
-      <End Role="Cities" EntitySet="Cities" />
-      <End Role="PostalCodes" EntitySet="PostalCodes" />
+      <End Role="City" EntitySet="Cities" />
+      <End Role="PostalCode" EntitySet="PostalCodes" />
     </AssociationSet>
     <AssociationSet Name="fk_5" Association="Self.fk_5">
-      <End Role="Cities" EntitySet="Cities" />
+      <End Role="City" EntitySet="Cities" />
       <End Role="CustomerDetails" EntitySet="CustomerDetails" />
     </AssociationSet>
     <AssociationSet Name="fk_1" Association="Self.fk_1">
-      <End Role="Countries" EntitySet="Countries" />
-      <End Role="States" EntitySet="States" />
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="State" EntitySet="States" />
     </AssociationSet>
     <AssociationSet Name="fk_7" Association="Self.fk_7">
-      <End Role="Countries" EntitySet="Countries" />
+      <End Role="Country" EntitySet="Countries" />
       <End Role="CustomerDetails" EntitySet="CustomerDetails" />
     </AssociationSet>
     <AssociationSet Name="fk_10" Association="Self.fk_10">
@@ -321,11 +321,11 @@
       <End Role="CustomerAccounts" EntitySet="CustomerAccounts" />
     </AssociationSet>
     <AssociationSet Name="fk_4" Association="Self.fk_4">
-      <End Role="PostalCodes" EntitySet="PostalCodes" />
+      <End Role="PostalCode" EntitySet="PostalCodes" />
       <End Role="CustomerDetails" EntitySet="CustomerDetails" />
     </AssociationSet>
     <AssociationSet Name="fk_6" Association="Self.fk_6">
-      <End Role="States" EntitySet="States" />
+      <End Role="State" EntitySet="States" />
       <End Role="CustomerDetails" EntitySet="CustomerDetails" />
     </AssociationSet>
     <AssociationSet Name="fk_14" Association="Self.fk_14">

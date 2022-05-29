@@ -1,0 +1,69 @@
+﻿@model TestBank.Models.SavingAccountDetail
+
+@{
+    ViewBag.Title = "success";
+}
+
+<h3 style="padding:1%  25%">Savings Account Created Successfully</h3>
+
+<div class="col-md-offset-3">
+    <h4 style="padding:1%  10%">Saving Account Detail</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AccNum)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AccNum)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IFSCcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IFSCcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SavingAccType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SavingAccType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BranchCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BranchCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Balance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrasferLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrasferLimit)
+        </dd>
+
+        
+
+    </dl>
+    <hr />
+    <div class="col-md-3 col-md-offset-1">
+        &emsp;&emsp;&emsp; <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Search", "CustomerDetails")'">Back</button>
+    </div>
+
+</div>
+

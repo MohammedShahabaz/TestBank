@@ -11,7 +11,8 @@ namespace TestBank.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CustomerDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,25 +22,60 @@ namespace TestBank.Models
         }
     
         public int CustID { get; set; }
-
+        [Required( ErrorMessage = "Enter FirstName")]
+        [StringLength(15, MinimumLength = 5,ErrorMessage = "Atleast 3 to 15 char")]
+        // [Display(Name = "FirstName")]
+        [RegularExpression(@"[A-Za-z]+", ErrorMessage = "Enter valid FirstName")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "Enter LastName")]
+        [StringLength(15, MinimumLength = 5, ErrorMessage = "Atleast 3 to 15 char")]
+        //[Display(Name = "FirstName")]
+        [RegularExpression(@"[A-Za-z]+", ErrorMessage = "Enter valid FirstName")]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "Enter Address1")]
+        [MinLength(5, ErrorMessage = " atleast 5 characters")]
+        [MaxLength(50, ErrorMessage = " can't be more than 50 char")]
         public string Address1 { get; set; }
+        [Required(ErrorMessage = "Enter Address2")]
+        [MinLength(5, ErrorMessage = "atleast 5 characters")]
+        [MaxLength(50, ErrorMessage = " can't be more than 50 char")]
         public string Address2 { get; set; }
+        [Required(ErrorMessage = " Enter mail")]
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$",
+            ErrorMessage = "Enter a valid Email address")]
         public string EmailId { get; set; }
+        [Required(ErrorMessage = "Enter mobile Number")]
+        //[Display(Name = "Phone")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+            ErrorMessage = "enter valid mobile number")]
+        public string Mobile { get; set; }
+        [Required(ErrorMessage = "Enter Date of Birth")]
+        [DataType(DataType.DateTime)]
+         // [Range(typeof(DateTime),"01-01-2010 ","01-01-2022",ErrorMessage = "DOB must between 01-01-1952 01-01-2002")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DOBValidation]
+        public DateTime DOB { get; set; }
+        [Required(ErrorMessage = "Enter Marital status")]
         public string MaritalStatus { get; set; }
-        public Nullable<int> ZIPCode { get; set; }
-        public Nullable<int> City { get; set; }
-        public Nullable<int> State { get; set; }
-        public Nullable<int> Country { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
-        public Nullable<decimal> Mobile { get; set; }
-    
+        [DataType(DataType.PostalCode, ErrorMessage = "enter valid Postal/Zip Code")]
+        [Required]
+        public int ZIPCode { get; set; }
+        [Required]
+        public int City { get; set; }
+        [Required]
+        public int State { get; set; }
+        [Required]
+        public int Country { get; set; }
+        
         public virtual City City1 { get; set; }
+  
         public virtual Country Country1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerAccount> CustomerAccounts { get; set; }
+   
         public virtual PostalCode PostalCode { get; set; }
+   
         public virtual State State1 { get; set; }
     }
 }

@@ -23,9 +23,9 @@ namespace TestBank.Models
         public int AccNum { get; set; }
         public string SavingAccType { get; set; }
         public string IFSCcode { get; set; }
+        public decimal Balance { get; set; }
         public int TrasferLimit { get; set; }
         public int BranchCode { get; set; }
-        public Nullable<decimal> Balance { get; set; }
     
         public virtual CustomerAccount CustomerAccount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

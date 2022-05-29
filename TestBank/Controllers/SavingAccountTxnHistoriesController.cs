@@ -12,7 +12,7 @@ namespace TestBank.Controllers
 {
     public class SavingAccountTxnHistoriesController : Controller
     {
-        private TestBankDBEntities2 db = new TestBankDBEntities2();
+        private BankEntities db = new BankEntities();
 
         // GET: SavingAccountTxnHistories
         public ActionResult Index()
@@ -54,7 +54,7 @@ namespace TestBank.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Withdraw([Bind(Include = "TxnID,TxnDate,AccNum,Balance,SourceType,TransType,Amount")] SavingAccountTxnHistory savingAccountTxnHistory)
         {
-            if (savingAccountTxnHistory.Amount == 0 || savingAccountTxnHistory.Amount > 9999999)
+            if (savingAccountTxnHistory.Amount <= 0 || savingAccountTxnHistory.Amount > 9999999)
             {
                 ViewBag.AccNum = savingAccountTxnHistory.AccNum;
                 ModelState.AddModelError("Amount", "Enter amount between 1-9999999");
@@ -75,7 +75,7 @@ namespace TestBank.Controllers
                 { 
                      limit+=trans.Amount;
                 }
-                limit += savingAccountTxnHistory.Amount;
+                limit  += savingAccountTxnHistory.Amount;
                 if (limit > s.TrasferLimit)
                 {
                     ViewBag.AccNum = savingAccountTxnHistory.AccNum;
@@ -120,7 +120,7 @@ namespace TestBank.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TxnID,TxnDate,AccNum,Balance,SourceType,TransType,Amount")] SavingAccountTxnHistory savingAccountTxnHistory)
         {
-            if (savingAccountTxnHistory.Amount == 0||savingAccountTxnHistory.Amount>9999999)
+            if (savingAccountTxnHistory.Amount <= 0||savingAccountTxnHistory.Amount>9999999)
             {
                 ViewBag.AccNum = savingAccountTxnHistory.AccNum;
                 ModelState.AddModelError("Amount", "Enter amount between 1-9999999");

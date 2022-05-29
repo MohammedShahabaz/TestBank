@@ -44,7 +44,7 @@
                             @Html.DisplayFor(modelItem => item.CustomerDetail.FirstName)
                         </td>
                         <td class="col">
-                            @if (item.AccountType == "Savings")
+                            @if (item.AccountType == "Savings Account")
                             {
                                 <div class="row">
                                     <div class="col-xs-3 ">
@@ -67,7 +67,7 @@
                                         <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("ViewAccount", "LoanAccountDetails", new { id = item.AccNum })'">View Account</button>
                                     </div>
                                     <div class="col-xs-3 col-xs-offset-1">
-                                        <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Delete", "LoanAccountDetails", new { id = item.AccNum })'">Delete</button>
+                                        <button type="button" class="btn btn-default" onclick="location.href = '@Url.Action("Delete", "CustomerAccounts", new { id = item.AccNum })'">Delete</button>
                                     </div>
                                 </div>
                             }

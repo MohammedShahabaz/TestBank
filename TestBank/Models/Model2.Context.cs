@@ -13,10 +13,10 @@ namespace TestBank.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TestBankDBEntities2 : DbContext
+    public partial class BankEntities : DbContext
     {
-        public TestBankDBEntities2()
-            : base("name=TestBankDBEntities2")
+        public BankEntities()
+            : base("name=BankEntities")
         {
         }
     

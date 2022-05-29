@@ -12,7 +12,7 @@ namespace TestBank.Controllers
 {
     public class LoanAccountDetailsController : Controller
     {
-        private TestBankDBEntities2 db = new TestBankDBEntities2();
+        private BankEntities db = new BankEntities();
 
         // GET: LoanAccountDetails
         public ActionResult Index()
@@ -103,6 +103,7 @@ namespace TestBank.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Accsubtypes = new SelectList(new List<object> { "Personal Loan", "Buisness Loan" });
             ViewBag.AccNum = new SelectList(db.CustomerAccounts, "AccNum", "AccountType", loanAccountDetail.AccNum);
             return View(loanAccountDetail);
         }
@@ -116,9 +117,11 @@ namespace TestBank.Controllers
         {
             if (ModelState.IsValid)
             {
+                CustomerAccount a = db.CustomerAccounts.Find(loanAccountDetail.AccNum);
+                a.AccountSubType = loanAccountDetail.LoanAccountType;
                 db.Entry(loanAccountDetail).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Search", "CustomerDetails");
             }
             ViewBag.AccNum = new SelectList(db.CustomerAccounts, "AccNum", "AccountType", loanAccountDetail.AccNum);
             return View(loanAccountDetail);

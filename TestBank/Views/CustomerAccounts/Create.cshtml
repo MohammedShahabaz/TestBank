@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h3 style="padding:0.5% 35%">ADD ACCOUNT</h3>
+<h3 style="padding:0.5% 37%">ADD ACCOUNT</h3>
 
 @using (Html.BeginForm())
 {
@@ -14,10 +14,10 @@
 
         <hr />
         <div class="row ">
-            <div class="col-md-9 col-md-offset-3">
+            <div class="col-md-10 col-md-offset-3">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group ">
-                    @Html.LabelFor(model => model.CustID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.CustID,"Customer ID", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-3 col-md-offset-0">
                         @Html.EditorFor(model => model.CustID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
 
@@ -28,7 +28,7 @@
         </div>
         <br />
         <div class="row ">
-            <div class="col-md-9 col-md-offset-3">
+            <div class="col-md-10 col-md-offset-3">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group ">
                     @Html.LabelFor(model => model.CustomerDetail.FirstName, "Account Holder", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -42,30 +42,32 @@
         </div>
         <br />
         <div class="row ">
-            <div class="col-md-9 col-md-offset-3">
+            <div class="col-md-10 col-md-offset-3">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.AccountType, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-8 col-md-offset-0">
-                        <select id="AccountDropDown" name="AccountType" style="width:190px ;height:33px" >
+                    @Html.LabelFor(model => model.AccountType,"Account Type" ,htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3 col-md-offset-0">
+                        @*<select id="AccountDropDown" name="AccountType" style="width:190px ;height:33px">
                             <option value="-1">--Select Account Type--</option>
-                            <option >  Savings Account  </option>
-                            <option >  Loan Account   </option>
-                        </select>
+                            <option>  Savings Account  </option>
+                            <option>  Loan Account   </option>
+                        </select>*@
+                        @Html.DropDownListFor(model => model.AccountType, ViewBag.Account as SelectList, "-Select Account Type --", new { @id = "AccountDropDown", @class = "form-control" })
                         @*@Html.DropDownListFor(model => model.AccountType, ViewBag.Acctypes as SelectList, "--- Select Account Type ---", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.AccountType, "", new { @class = "text-danger" })*@
+        @Html.ValidationMessageFor(model => model.AccountType, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
             </div>
         </div>
         <br />
         <div class="row ">
-            <div class="col-md-9 col-md-offset-3">
+            <div class="col-md-10 col-md-offset-3">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.AccountSubType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.AccountSubType,"Account SubTypes", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-3 col-md-offset-0">
-                        <select id="AccountSubDropDown" name="AccountSubType" style="width:190px ;height:33px"> </select>
-                        @*@Html.DropDownListFor(model => model.AccountSubType, ViewBag.Accsubtypes as SelectList, "--- Select Account SubType ---", new { @class = "form-control" })*@
-                        @Html.ValidationMessageFor(model => model.AccountSubType, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(model => model.AccountSubType, new SelectList(""), new { @id = "AccountSubDropDown", @class = "form-control" })
+                        @*<select id="AccountSubDropDown" name="AccountSubType" style="width:190px ;height:33px"> </select>*@
+                        @*@Html.DropDownListFor(model => model.AccountSubType, ViewBag.Accsubtypes as SelectList, "--- Select Account SubType ---", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.AccountSubType, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
             </div>
@@ -73,9 +75,9 @@
         <br /><br />
 
         <div class="row">
-            <div class="col-md-1 col-md-offset-4">
+            <div class="col-md-2 col-md-offset-4">
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    &emsp; &emsp;  <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
             <div class="col-md-2 col-md-offset-0">
@@ -93,14 +95,14 @@
             $('#AccountDropDown').on('change', function () {
                 var account = $(this);
                 if (account.val() === "Savings Account") {
-                    var s = '<option value="-1">--Select Account Sub Types--</option>';
-                    s += '<option>Regular</option>';
-                    s += '<option>Savings</option>';
+                    var s = '<option value="-1">Select Account SubType--</option>';
+                    s += '<option>Regular Savings</option>';
+                    s += '<option>Salary Savings</option>';
                     $('#AccountSubDropDown').html(s);
                 } else if (account.val() === "Loan Account"){
-                    var s = '<option value="-1">--Select Account Sub Types--</option>';
-                    s += '<option>Personal</option>';
-                    s += '<option>Buisness</option>';
+                    var s = '<option value="-1">Select Account SubType--</option>';
+                    s += '<option>Personal Loan</option>';
+                    s += '<option>Buisness Loan</option>';
                     $('#AccountSubDropDown').html(s);
                 }
               

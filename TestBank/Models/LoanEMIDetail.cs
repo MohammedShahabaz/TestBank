@@ -19,8 +19,8 @@ namespace TestBank.Models
         public Nullable<System.DateTime> EMIDate { get; set; }
         public Nullable<decimal> EMIAmount { get; set; }
         public string EMIStatus { get; set; }
-        public Nullable<decimal> RemainingBalance { get; set; }
         public Nullable<System.DateTime> EMIReminder { get; set; }
+        public Nullable<decimal> RemainingBalance { get; set; }
     
         public virtual LoanAccountDetail LoanAccountDetail { get; set; }
     }

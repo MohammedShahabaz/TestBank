@@ -154,6 +154,7 @@
     <Compile Include="Models\CustomerDetail.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DOBValidation.cs" />
     <Compile Include="Models\LoanAccountDetail.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
@@ -298,6 +299,7 @@
     <Content Include="Views\LoanEMIDetails\Index.cshtml" />
     <Content Include="Views\SavingAccountDetails\Grid.cshtml" />
     <Content Include="Views\LoanAccountDetails\Grid.cshtml" />
+    <Content Include="Views\SavingAccountDetails\success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

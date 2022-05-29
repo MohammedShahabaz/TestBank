@@ -6,75 +6,91 @@
 
 <h3 style="padding:0.5% 30%">SAVING ACCOUNT DETAIL</h3>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+   
 <div class="form-horizontal">
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="row col-md-offset-3">
-        <div class="form-group ">
-            @Html.LabelFor(model => model.AccNum, "Account Number", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-3 ">
-                @Html.EditorFor(model => model.AccNum, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.c.AccNum, @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.AccNum, "", new { @class = "text-danger" })
+
+    <div class="row ">
+        <div class="col-xs-5 col-xs-offset-1 ">
+            <div class="form-group ">
+                <div class="col-md-3 col-md-offset-0">
+                    @Html.LabelFor(model => model.AccNum, "Account_Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    @Html.EditorFor(model => model.AccNum, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.c.AccNum, @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.AccNum, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row col-md-offset-3">
-        <div class="form-group col-md-offset-3">
-            @Html.LabelFor(model => model.SavingAccType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.SavingAccType, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.c.AccountSubType, @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.SavingAccType, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-    <div class="row col-md-offset-3">
-        <div class="form-group">
-            @Html.LabelFor(model => model.IFSCcode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.IFSCcode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IFSCcode, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-    <div class="row col-md-offset-3">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-    <div class="row col-md-offset-3">
-        <div class="form-group">
-            @Html.LabelFor(model => model.TrasferLimit, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.TrasferLimit, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TrasferLimit, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-    <div class="row col-md-offset-3">
-        <div class="form-group">
-            @Html.LabelFor(model => model.BranchCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.BranchCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BranchCode, "", new { @class = "text-danger" })
+        <div class="col-md-6 col-md-offset-0 ">
+            <div class="form-group ">
+                @Html.LabelFor(model => model.SavingAccType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4 col-md-offset-1">
+                    @Html.EditorFor(model => model.SavingAccType, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.c.AccountSubType, @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.SavingAccType, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
     </div>
     <br />
+
+    <div class="row ">
+        <div class="col-xs-5 col-xs-offset-1 ">
+            <div class="form-group">
+                <div class="col-md-3 col-md-offset-0">
+                    @Html.LabelFor(model => model.IFSCcode,"IFSC_Code", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    @Html.EditorFor(model => model.IFSCcode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IFSCcode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-0 ">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4 col-md-offset-1">
+                    @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row ">
+        <div class="col-xs-5 col-xs-offset-1 ">
+            <div class="form-group">
+                <div class="col-md-3 col-md-offset-0">
+                    @Html.LabelFor(model => model.TrasferLimit, "Trasfer_Limit", htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    @Html.EditorFor(model => model.TrasferLimit, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TrasferLimit, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-0 ">
+            <div class="form-group">
+                @Html.LabelFor(model => model.BranchCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4 col-md-offset-1">
+                    @Html.EditorFor(model => model.BranchCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BranchCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />    <br />
     <div class="row col-md-offset-3">
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Add Account Details" class="btn btn-default" style="width:180px" />
             </div>
         </div>
     </div>
 </div>
-                            }
+}
 

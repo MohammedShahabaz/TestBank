@@ -2,13 +2,21 @@
 @{
     ViewBag.Title = "ViewAccount";
 }
-<h4 style="padding:1%  35%">LOAN ACCOUNT DETAIL</h4>
-<hr />
 
+<div class="row ">
+    <div class="col-md-2 col-md-offset-0 ">
+        <br />
+        <button type="button" class="btn btn-default " onclick=" location.href = '@Url.Action("Search", "CustomerDetails")' ">BACK</button>
+    </div>
+    <div class="col-md-10 col-md-offset-0 ">
+        <br>
+        <h4 style="padding:0% 24%">LOAN ACCOUNT DETAILS </h4>
+    </div>
+</div>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    <hr />
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row ">
@@ -149,7 +157,7 @@
 
 <div class="row ">
     <div class="col-md-9 col-md-offset-0 ">
-       <h4 style="padding:0% 20% 0% 50%">EMI HISTORY </h4>
+        <h4 style="padding:0% 20% 0% 50%">EMI HISTORY </h4>
     </div>
 
     <div class="col-md-3 col-md-offset-0 ">

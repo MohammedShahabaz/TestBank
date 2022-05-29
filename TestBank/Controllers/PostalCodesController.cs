@@ -12,7 +12,7 @@ namespace TestBank.Controllers
 {
     public class PostalCodesController : Controller
     {
-        private TestBankDBEntities2 db = new TestBankDBEntities2();
+        private BankEntities db = new BankEntities();
 
         // GET: PostalCodes
         public ActionResult Index()

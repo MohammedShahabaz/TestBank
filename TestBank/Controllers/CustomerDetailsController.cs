@@ -14,7 +14,7 @@ namespace TestBank.Controllers
 {
     public class CustomerDetailsController : Controller
     {
-        private TestBankDBEntities2 db = new TestBankDBEntities2();
+        private BankEntities db = new BankEntities();
 
         // GET: CustomerDetails
         public ActionResult Index()
@@ -79,8 +79,10 @@ namespace TestBank.Controllers
         // GET: CustomerDetails/Create
         public ActionResult Create()
         {
-            ViewBag.country = db.Countries.ToList();
-            
+            //ViewBag.country = db.Countries.ToList();
+            ViewBag.Country = new SelectList(db.Countries, "CountryCode", "CountryName");
+            //ViewBag.State = new SelectList(db.States, "StateCode", "StateName");
+            ViewBag.Status = new SelectList(new List<object> { "Single", "Married" });
             return View();
         }
 
@@ -91,13 +93,15 @@ namespace TestBank.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CustID,FirstName,LastName,Address1,Address2,EmailId,Mobile,DOB,MaritalStatus,ZIPCode,City,State,Country")] CustomerDetail customerDetail)
         {
+           
             if (ModelState.IsValid)
             {
                 db.CustomerDetails.Add(customerDetail);
                 db.SaveChanges();
                 return RedirectToAction("Search");
             }
-
+            //ViewBag.country = db.Countries.ToList();
+            ViewBag.Status = new SelectList(new List<object> { "Single", "Married" });
             ViewBag.City = new SelectList(db.Cities, "CityCode", "CityName", customerDetail.City);
             ViewBag.Country = new SelectList(db.Countries, "CountryCode", "CountryName", customerDetail.Country);
             ViewBag.ZIPCode = new SelectList(db.PostalCodes, "ZipCode", "ZipCode", customerDetail.ZIPCode);
@@ -118,8 +122,11 @@ namespace TestBank.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.country = db.Countries.ToList();
-            ViewBag.stt = db.States.Find(customerDetail.State);
+          
+            ViewBag.Country = new SelectList(db.Countries, "CountryCode", "CountryName");
+            ViewBag.Status = new SelectList(new List<object> { "Single", "Married" });
+            //ViewBag.country = db.Countries.ToList();
+
 
             return View(customerDetail);
         }
@@ -164,10 +171,36 @@ namespace TestBank.Controllers
         
         public ActionResult DeleteConfirmed(int id)
         {
+            var AllAccounts = db.CustomerAccounts.Where(x => x.CustID == id).ToList();
+            foreach (var account in AllAccounts)
+            {
+                CustomerAccount customerAccount = db.CustomerAccounts.Find(account.AccNum);
+                if (customerAccount.AccountType == "Savings Account")
+                {
+                    var AccountTrans = db.SavingAccountTxnHistories.Where(x => x.AccNum == id).ToList();
+                    foreach (var trans in AccountTrans)
+                        db.SavingAccountTxnHistories.Remove(trans);
+
+                    SavingAccountDetail savingAccount = db.SavingAccountDetails.Find(id);
+                    db.SavingAccountDetails.Remove(savingAccount);
+                }
+                else
+                {
+                    var AccountTrans = db.LoanEMIDetails.Where(x => x.AccNum == id).ToList();
+                    foreach (var trans in AccountTrans)
+                        db.LoanEMIDetails.Remove(trans);
+
+                    LoanAccountDetail loanAccount = db.LoanAccountDetails.Find(id);
+                    db.LoanAccountDetails.Remove(loanAccount);
+                }
+                db.CustomerAccounts.Remove(customerAccount);
+                db.SaveChanges();
+            }
             CustomerDetail customerDetail = db.CustomerDetails.Find(id);
             db.CustomerDetails.Remove(customerDetail);
+
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Search");
         }
 
 

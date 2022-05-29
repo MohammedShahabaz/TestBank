@@ -12,7 +12,7 @@ namespace TestBank.Controllers
 {
     public class CustomerAccountsController : Controller
     {
-        private TestBankDBEntities2 db = new TestBankDBEntities2();
+        private BankEntities db = new BankEntities();
 
         // GET: CustomerAccounts
         public ActionResult Index()
@@ -43,8 +43,8 @@ namespace TestBank.Controllers
              ViewBag.customer = customerdetail;
             CustomerAccount c = new CustomerAccount();
             c.CustID = customerdetail.CustID;
-
-            
+            ViewBag.Account = new SelectList(new List<object> { "Savings Account", "Loan Account" });
+             
             return View(c);
         }
 
@@ -59,7 +59,7 @@ namespace TestBank.Controllers
             {
                 db.CustomerAccounts.Add(customerAccount);
                  db.SaveChanges();
-                if (customerAccount.AccountType == "Savings")
+                if (customerAccount.AccountType == "Savings Account")
                 {
                     return RedirectToAction("Create", "SavingAccountDetails",new { id = customerAccount.AccNum });
                 }
@@ -133,6 +133,24 @@ namespace TestBank.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CustomerAccount customerAccount = db.CustomerAccounts.Find(id);
+            if (customerAccount.AccountType == "Savings Account")
+            {
+                var AccountTrans = db.SavingAccountTxnHistories.Where(x => x.AccNum == id).ToList();
+                foreach (var trans in AccountTrans)
+                      db.SavingAccountTxnHistories.Remove(trans);
+
+                SavingAccountDetail savingAccount = db.SavingAccountDetails.Find(id);
+                db.SavingAccountDetails.Remove(savingAccount);
+            }
+            else
+            {
+                var AccountTrans = db.LoanEMIDetails.Where(x => x.AccNum == id).ToList();
+                foreach (var trans in AccountTrans)
+                    db.LoanEMIDetails.Remove(trans);
+
+                LoanAccountDetail loanAccount = db.LoanAccountDetails.Find(id);
+                db.LoanAccountDetails.Remove(loanAccount);
+            }
             db.CustomerAccounts.Remove(customerAccount);
             db.SaveChanges();
             return RedirectToAction("Search","CustomerDetails");

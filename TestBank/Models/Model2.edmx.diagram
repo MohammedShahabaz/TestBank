@@ -4,29 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9521ede8bebe4dec9476bab3c55a5936" Name="Diagram1" ZoomLevel="85">
-        <EntityTypeShape EntityType="TestBankDBModel1.City" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestBankDBModel1.Country" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestBankDBModel1.CustomerAccount" Width="1.5" PointX="12" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestBankDBModel1.CustomerDetail" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestBankDBModel1.LoanAccountDetail" Width="1.5" PointX="14.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestBankDBModel1.LoanEMIDetail" Width="1.5" PointX="16.5" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestBankDBModel1.PostalCode" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestBankDBModel1.SavingAccountDetail" Width="1.5" PointX="14.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestBankDBModel1.SavingAccountTxnHistory" Width="1.5" PointX="16.5" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestBankDBModel1.State" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <AssociationConnector Association="TestBankDBModel1.fk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="TestBankDBModel1.fk_3" ManuallyRouted="false" />
-        <AssociationConnector Association="TestBankDBModel1.fk_5" ManuallyRouted="false" />
-        <AssociationConnector Association="TestBankDBModel1.fk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="TestBankDBModel1.fk_7" ManuallyRouted="false" />
-        <AssociationConnector Association="TestBankDBModel1.fk_10" ManuallyRouted="false" />
-        <AssociationConnector Association="TestBankDBModel1.fk_13" ManuallyRouted="false" />
-        <AssociationConnector Association="TestBankDBModel1.fk_8" ManuallyRouted="false" />
-        <AssociationConnector Association="TestBankDBModel1.fk_4" ManuallyRouted="false" />
-        <AssociationConnector Association="TestBankDBModel1.fk_6" ManuallyRouted="false" />
-        <AssociationConnector Association="TestBankDBModel1.fk_14" ManuallyRouted="false" />
-        <AssociationConnector Association="TestBankDBModel1.fk_12" ManuallyRouted="false" />
+      <Diagram DiagramId="f51001971c0c42428d423923fcda66c6" Name="Diagram1">
+        <EntityTypeShape EntityType="BankModel.City" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.Country" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.CustomerAccount" Width="1.5" PointX="12" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.CustomerDetail" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.LoanAccountDetail" Width="1.5" PointX="14.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.LoanEMIDetail" Width="1.5" PointX="16.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.PostalCode" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.SavingAccountDetail" Width="1.5" PointX="14.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.SavingAccountTxnHistory" Width="1.5" PointX="16.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankModel.State" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="BankModel.fk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.fk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.fk_5" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.fk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.fk_7" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.fk_10" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.fk_13" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.fk_8" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.fk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.fk_6" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.fk_14" ManuallyRouted="false" />
+        <AssociationConnector Association="BankModel.fk_12" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
